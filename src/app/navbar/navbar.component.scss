@@ -1,0 +1,52 @@
+.stellar-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.stellar-navbar .brand-name a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.stellar-navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stellar-navbar .nav-links a,
+.stellar-navbar .nav-links button {
+  background: none;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.stellar-navbar .nav-links a:hover,
+.stellar-navbar .nav-links button:hover {
+  background-color: white;
+  color: #007bff;
+}
+
+.stellar-navbar .nav-links button {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+
+.stellar-navbar .nav-links button:hover {
+  color: #007bff;
+  background-color: white;
+  border-color: #007bff;
+}
