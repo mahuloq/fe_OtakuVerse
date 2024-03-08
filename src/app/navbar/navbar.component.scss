@@ -1,16 +1,22 @@
 .stellar-navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #007bff;
+  flex-direction: column;
+  background-color: white;
   color: white;
-  padding: 0.5rem 1rem;
 }
 
+.nav-test {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  margin: 0.5rem;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+}
 .stellar-navbar .brand-name a {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -23,10 +29,7 @@
 .stellar-navbar .nav-links a,
 .stellar-navbar .nav-links button {
   background: none;
-  border: 1px solid white;
   border-radius: 4px;
-  color: white;
-  padding: 0.5rem 1rem;
   text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
@@ -35,18 +38,32 @@
 
 .stellar-navbar .nav-links a:hover,
 .stellar-navbar .nav-links button:hover {
-  background-color: white;
-  color: #007bff;
+  color: black;
 }
 
-.stellar-navbar .nav-links button {
-  background-color: transparent;
+.navigation-bar {
+  padding-left: 2rem;
+  background-color: #007bff;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.log {
+  border: solid 2px #007bff;
+  width: 105px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.sign {
+  background-color: #007bff;
+  width: 105px;
+  border-radius: 4px;
+  text-align: center;
+  border: solid 1px #007bff;
+}
+
+.sign a {
   color: white;
-  border-color: white;
-}
-
-.stellar-navbar .nav-links button:hover {
-  color: #007bff;
-  background-color: white;
-  border-color: #007bff;
 }

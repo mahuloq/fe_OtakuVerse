@@ -24,7 +24,7 @@ export class LoginComponent {
       next: (res: any) => {
         console.log('Logged in with token:', res.token);
         this.authService.setToken(res.token);
-        this.router.navigate(['/todo-list']);
+        this.router.navigate(['/']);
       },
       error: (error: any) => {
         console.error('Login error', error);
