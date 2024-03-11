@@ -16,6 +16,13 @@ export class AuthenticationService {
       username,
       password,
     });
+    // (
+    //   'https://otakuverse.onrender.com/login',
+    //   {
+    //     username,
+    //     password,
+    //   }
+    // );
   }
 
   setToken(token: string) {
@@ -35,5 +42,9 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     this.tokenSubject.next(null);
     this.router.navigate(['/login']);
+  }
+
+  signUp(user: any) {
+    return this.http.post('http://localhost:3000/users', user);
   }
 }

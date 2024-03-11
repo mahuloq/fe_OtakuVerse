@@ -49,12 +49,13 @@
   gap: 1rem;
 }
 
-.log {
-  border: solid 2px #007bff;
-  width: 105px;
-  text-align: center;
-  border-radius: 4px;
-}
+// .log {
+//   border: solid 2px #007bff;
+//   width: 105px;
+//   text-align: center;
+//   border-radius: 4px;
+//   outline: none;
+// }
 
 .sign {
   background-color: #007bff;
@@ -66,4 +67,34 @@
 
 .sign a {
   color: white;
+}
+
+.log {
+  width: 105px;
+  text-align: center;
+  border-radius: 4px;
+  outline: none;
+  color: #007bff;
+  border: solid 2px #007bff;
+}
+
+.log a {
+  background: none;
+  border: none; /* Remove button border */
+  width: 100%; /* Ensure button fills container width */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.button-link:hover {
+  color: black;
 }

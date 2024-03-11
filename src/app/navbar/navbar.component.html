@@ -7,17 +7,17 @@
     <div class="nav-links">
       <div class="log">
         @if (authService.isLoggedIn()){
-        <button (click)="logout()">Logout</button>
+        <a class="button-link" (click)="logout()">Logout</a>
         }@else {
-        <a routerLink="/login">Login</a>
+        <a class="button-link" routerLink="/login">Login</a>
         }
       </div>
 
+      @if (!authService.isLoggedIn()){
       <div class="sign">
-        @if (!authService.isLoggedIn()){
-        <a routerLink="/signUp">Sign Up</a>
-        }
+        <a class="button-link" routerLink="/signup">Sign Up</a>
       </div>
+      }
     </div>
   </div>
 
