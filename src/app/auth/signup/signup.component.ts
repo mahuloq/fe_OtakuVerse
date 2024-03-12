@@ -17,7 +17,7 @@ export class SignupComponent {
     password: '',
     password_confirmation: '',
   };
-  errorMessage: string | null = null;
+  errorMessage: string[] | null = null;
 
   constructor(
     private authService: AuthenticationService,
@@ -36,17 +36,17 @@ export class SignupComponent {
         error: (error: any) => {
           console.error('Sign up failed', error);
           // Handle error (e.g., show error message)
-          if (error && error.error && error.error.errors) {
-            this.errorMessage = error.error.errors.join(', ');
+          if (error && error.error) {
+            this.errorMessage = error.error;
           } else {
-            this.errorMessage = 'An error occurred while signing up.';
+            this.errorMessage = ['An error occurred while signing up.'];
           }
         },
       });
     } else {
       console.error('Passwords do not match');
       // Handle password mismatch (e.g., show error message)
-      this.errorMessage = 'Passwords do not match.';
+      this.errorMessage = ['Passwords do not match.'];
     }
   }
 }

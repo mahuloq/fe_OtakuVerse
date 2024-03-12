@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { noAuthGuard } from './no-auth.guard';
+import { noAuthGuard } from './auth/guards/no-auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,13 +11,13 @@ export const routes: Routes = [
   {
     path: 'signup',
     loadComponent: () =>
-      import('./signup/signup.component').then((m) => m.SignupComponent),
+      import('./auth/signup/signup.component').then((m) => m.SignupComponent),
     canActivate: [noAuthGuard],
   },
   {
     path: 'login',
     loadComponent: () =>
-      import('./login/login.component').then((m) => m.LoginComponent),
+      import('./auth/login/login.component').then((m) => m.LoginComponent),
     canActivate: [noAuthGuard],
   },
 ];

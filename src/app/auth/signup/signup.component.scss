@@ -46,11 +46,18 @@
 .error-message {
   color: #ff3860;
   margin-top: 0.5rem;
+  list-style: none;
 }
 
 @media (max-width: 576px) {
   .signup-container {
     padding: 1rem;
     margin: 1rem;
+  }
+
+  .btn:disabled {
+    background-color: #dddddd; /* Set the background color to grey */
+    color: #999999; /* Set the text color to a darker shade of grey */
+    cursor: not-allowed; /* Set the cursor to indicate that the button is not clickable */
   }
 }

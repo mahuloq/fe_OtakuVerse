@@ -14,6 +14,8 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
+  errorMessage: string[] | null = null;
+
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -28,6 +30,13 @@ export class LoginComponent {
       },
       error: (error: any) => {
         console.error('Login error', error);
+
+        // Handle error (e.g., show error message)
+        if (error && error.error && error.error.error) {
+          this.errorMessage = error.error.error;
+        } else {
+          this.errorMessage = ['An error occurred while logging in.'];
+        }
       },
     });
   }

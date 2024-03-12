@@ -41,6 +41,14 @@
         required
       />
     </div>
-    <button type="submit" class="btn">Sign Up</button>
+    <button type="submit" class="btn" [disabled]="!signupForm.valid">
+      Sign Up
+    </button>
   </form>
+
+  <ul>
+    @for(error of errorMessage; track error){
+    <li class="error-message">{{ error }}</li>
+    }
+  </ul>
 </div>
