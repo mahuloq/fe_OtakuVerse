@@ -22,12 +22,77 @@
   </div>
 
   <div class="navigation-bar">
-    <div>Anime</div>
-    <div>Manga</div>
-    <div>Community</div>
-    <div>Industry</div>
-    <div>Watch</div>
-    <div>Read</div>
-    <div>Help</div>
+    <div
+      class="nav-item"
+      (mouseenter)="toggleDropdown(true)"
+      (mouseleave)="toggleDropdown(false)"
+    >
+      Anime
+      <div class="dropdown">
+        @if(isDropdownOpen){
+        <a>Anime Search</a>
+        <a>Top Anime</a>
+        <a>Seasonal Anime</a>}
+      </div>
+    </div>
+    <div
+      class="nav-item"
+      (mouseenter)="toggleDropdown(true)"
+      (mouseleave)="toggleDropdown(false)"
+    >
+      Manga
+      <div class="dropdown">
+        @if(isDropdownOpen){
+        <a>Manga Search</a>
+        <a>Top Manga</a>
+        }
+      </div>
+    </div>
+    <div
+      class="nav-item"
+      (mouseenter)="toggleDropdown(true)"
+      (mouseleave)="toggleDropdown(false)"
+    >
+      Community
+      <div class="dropdown">
+        @if(isDropdownOpen){
+        <a>Forums</a>
+        <a>Blogs</a>
+        <a>Users</a>}
+      </div>
+    </div>
+
+    <div
+      class="nav-item"
+      (mouseenter)="toggleDropdown(true)"
+      (mouseleave)="toggleDropdown(false)"
+    >
+      Industry
+      <div class="dropdown">
+        @if(isDropdownOpen){
+        <a>News</a>
+        <a>Featured Articles</a>
+        <a>People</a>
+        <a>Characters</a>
+        <a>Companies</a>}
+      </div>
+    </div>
+
+    <div
+      class="nav-item"
+      (mouseenter)="toggleDropdown(true)"
+      (mouseleave)="toggleDropdown(false)"
+    >
+      Help
+      <div class="dropdown">
+        @if(isDropdownOpen){
+        <a>About</a>
+        <a>Support</a>
+        <a>Advertising</a>
+        <a>FAQ</a>
+        <a>Report</a>
+        <a>Staff</a>}
+      </div>
+    </div>
   </div>
 </nav>
