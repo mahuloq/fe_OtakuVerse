@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { noAuthGuard } from './auth/guards/no-auth.guard';
+import { authGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -19,5 +20,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./auth/login/login.component').then((m) => m.LoginComponent),
     canActivate: [noAuthGuard],
+  },
+  {
+    path: 'create-anime',
+    loadComponent: () =>
+      import('./create-anime/create-anime.component').then(
+        (m) => m.CreateAnimeComponent
+      ),
+    canActivate: [authGuard],
   },
 ];

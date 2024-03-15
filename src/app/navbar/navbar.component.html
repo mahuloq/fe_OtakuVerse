@@ -22,76 +22,86 @@
   </div>
 
   <div class="navigation-bar">
-    <div
-      class="nav-item"
-      (mouseenter)="toggleDropdown(true)"
-      (mouseleave)="toggleDropdown(false)"
-    >
-      Anime
-      <div class="dropdown">
-        @if(isDropdownOpen){
-        <a>Anime Search</a>
-        <a>Top Anime</a>
-        <a>Seasonal Anime</a>}
+    <div class="nav-item-container">
+      <div
+        class="nav-item"
+        (mouseenter)="toggleDropdown(0, true)"
+        (mouseleave)="toggleDropdown(0, false)"
+      >
+        Anime
+        <div class="dropdown">
+          @if(dropdownStates[0]){
+          <a class="drop-link">Anime Search</a>
+          <a class="drop-link">Top Anime</a>
+          <a class="drop-link">Seasonal Anime</a>
+          <a class="drop-link" routerLink="/create-anime">Create Entry</a>}
+        </div>
       </div>
     </div>
-    <div
-      class="nav-item"
-      (mouseenter)="toggleDropdown(true)"
-      (mouseleave)="toggleDropdown(false)"
-    >
-      Manga
-      <div class="dropdown">
-        @if(isDropdownOpen){
-        <a>Manga Search</a>
-        <a>Top Manga</a>
-        }
+    <div class="nav-item-container">
+      <div
+        class="nav-item"
+        (mouseenter)="toggleDropdown(1, true)"
+        (mouseleave)="toggleDropdown(1, false)"
+      >
+        Manga
+        <div class="dropdown">
+          @if(dropdownStates[1]){
+          <a class="drop-link">Manga Search</a>
+          <a class="drop-link">Top Manga</a>
+          <a class="drop-link">Create Entry</a>
+          }
+        </div>
       </div>
     </div>
-    <div
-      class="nav-item"
-      (mouseenter)="toggleDropdown(true)"
-      (mouseleave)="toggleDropdown(false)"
-    >
-      Community
-      <div class="dropdown">
-        @if(isDropdownOpen){
-        <a>Forums</a>
-        <a>Blogs</a>
-        <a>Users</a>}
+    <div class="nav-item-container">
+      <div
+        class="nav-item"
+        (mouseenter)="toggleDropdown(2, true)"
+        (mouseleave)="toggleDropdown(2, false)"
+      >
+        Community
+        <div class="dropdown">
+          @if(dropdownStates[2]){
+          <a class="drop-link">Forums</a>
+          <a class="drop-link">Blogs</a>
+          <a class="drop-link">Users</a>}
+        </div>
       </div>
     </div>
-
-    <div
-      class="nav-item"
-      (mouseenter)="toggleDropdown(true)"
-      (mouseleave)="toggleDropdown(false)"
-    >
-      Industry
-      <div class="dropdown">
-        @if(isDropdownOpen){
-        <a>News</a>
-        <a>Featured Articles</a>
-        <a>People</a>
-        <a>Characters</a>
-        <a>Companies</a>}
+    <div class="nav-item-container">
+      <div
+        class="nav-item"
+        (mouseenter)="toggleDropdown(3, true)"
+        (mouseleave)="toggleDropdown(3, false)"
+      >
+        Industry
+        <div class="dropdown">
+          @if(dropdownStates[3]){
+          <a class="drop-link">News</a>
+          <a class="drop-link">Featured Articles</a>
+          <a class="drop-link">People</a>
+          <a class="drop-link">Characters</a>
+          <a class="drop-link">Companies</a>}
+        </div>
       </div>
     </div>
-
-    <div
-      class="nav-item"
-      (mouseenter)="toggleDropdown(true)"
-      (mouseleave)="toggleDropdown(false)"
-    >
-      Help
-      <div class="dropdown">
-        @if(isDropdownOpen){
-        <a>About</a>
-        <a>Support</a>
-        <a>Advertising</a>
-        <a>FAQ</a>
-        <a>Report</a>
-        <a>Staff</a>}
+    <div class="nav-item-container">
+      <div
+        class="nav-item"
+        (mouseenter)="toggleDropdown(4, true)"
+        (mouseleave)="toggleDropdown(4, false)"
+      >
+        Help
+        <div class="dropdown">
+          @if(dropdownStates[4]){
+          <a class="drop-link">About</a>
+          <a class="drop-link">Support</a>
+          <a class="drop-link">Advertising</a>
+          <a class="drop-link">FAQ</a>
+          <a class="drop-link">Report</a>
+          <a class="drop-link">Staff</a>}
+        </div>
       </div>
     </div>
   </div>

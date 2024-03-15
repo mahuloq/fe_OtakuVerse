@@ -49,14 +49,6 @@
   gap: 1rem;
 }
 
-// .log {
-//   border: solid 2px #007bff;
-//   width: 105px;
-//   text-align: center;
-//   border-radius: 4px;
-//   outline: none;
-// }
-
 .sign {
   background-color: #007bff;
   width: 105px;
@@ -100,7 +92,7 @@
 }
 /* Style the trigger element for the dropdown */
 .nav-item {
-  background-color: #4caf50; /* Background color */
+  background-color: #007bff; /* Background color */
   color: white; /* Text color */
   padding: 10px; /* Padding */
   font-size: 16px; /* Font size */
@@ -133,4 +125,51 @@
 /* Show the dropdown menu on hover */
 .nav-item:hover .dropdown-content {
   display: block;
+}
+
+.nav-item-container {
+  position: relative;
+  display: inline-block; /* Ensure each container takes only as much space as needed */
+}
+
+.dropdown {
+  width: 10rem;
+  position: absolute;
+  top: 100%; /* Position the dropdown below the navigation item */
+  left: 0;
+  background-color: #4ea8ff; /* Adjust this as needed */
+  padding: 10px; /* Adjust as needed */
+  border: 1px solid #ccc; /* Adjust as needed */
+  border-top: none; /* Ensure the dropdown doesn't overlap with the navigation item */
+  display: none; /* Hide by default */
+  z-index: 1000; /* Ensure dropdown appears above other content */
+}
+
+.nav-item-container:hover .dropdown {
+  display: block; /* Show dropdown when hovering over the navigation item */
+}
+
+.dropdown a {
+  display: block; /* Change the display to block so that each link occupies a full line */
+
+  padding: 5px 10px; /* Adjust padding as needed */
+  /* Add any other styling you want for the links */
+}
+.dropdown a:hover {
+  background-color: #007bff;
+  width: 9.8rem;
+  margin-left: -0.6rem;
+}
+
+.nav-item:hover {
+  background-color: #4ea8ff;
+}
+
+.brand-name:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.drop-link {
+  text-decoration: none;
+  color: inherit;
 }

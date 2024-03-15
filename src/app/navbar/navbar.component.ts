@@ -12,11 +12,10 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   constructor(public authService: AuthenticationService) {}
+  dropdownStates: boolean[] = [false, false, false, false, false]; // Initialize all dropdowns as closed
 
-  isDropdownOpen = false;
-
-  toggleDropdown(open: boolean): void {
-    this.isDropdownOpen = open;
+  toggleDropdown(index: number, isOpen: boolean) {
+    this.dropdownStates[index] = isOpen;
   }
 
   logout() {
