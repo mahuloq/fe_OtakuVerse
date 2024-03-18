@@ -173,3 +173,13 @@
   text-decoration: none;
   color: inherit;
 }
+
+.dropdown.extended {
+  width: 10.2rem;
+}
+
+.dropdown.extended a:hover {
+  background-color: #007bff;
+  width: 10rem;
+  margin-left: -0.6rem;
+}
