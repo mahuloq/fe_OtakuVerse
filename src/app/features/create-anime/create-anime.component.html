@@ -1,0 +1,51 @@
+<form [formGroup]="animeForm">
+  <table>
+    <tr>
+      <td>End Air Date:</td>
+      <td><input type="text" formControlName="end_air_date" /></td>
+    </tr>
+    <tr>
+      <td>Number of Episodes:</td>
+      <td><input type="text" formControlName="number_of_episodes" /></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><textarea formControlName="description"></textarea></td>
+    </tr>
+    <tr>
+      <td>Season:</td>
+      <td><input type="text" formControlName="season" /></td>
+    </tr>
+    <tr>
+      <td>Studio:</td>
+      <td><input type="text" formControlName="studio" /></td>
+    </tr>
+    <tr>
+      <td>Source:</td>
+      <td><input type="text" formControlName="source" /></td>
+    </tr>
+    <tr>
+      <td>Duration:</td>
+      <td><input type="text" formControlName="duration" /></td>
+    </tr>
+    <tr>
+      <td>Age Rating:</td>
+      <td><input type="text" formControlName="age_rating" /></td>
+    </tr>
+    <tr>
+      <td>Genres:</td>
+      <td>
+        @if(genreIds.length >0){
+        <div formArrayName="genreIds">
+          @for(genre of genres; track genre.id){
+
+          <label
+            ><input type="checkbox" [formControlName]="$index" />
+            [value]="genre.id" {{ genre.name }}</label
+          >}
+        </div>
+        }
+      </td>
+    </tr>
+  </table>
+</form>

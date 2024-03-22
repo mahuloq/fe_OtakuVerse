@@ -9,7 +9,7 @@ import { Genre } from '../../shared/models/genre';
 export class GenreService {
   constructor(private http: HttpClient) {}
 
-  getGenres(page: number) {
+  getGenres() {
     return this.http.get<Genre[]>(`${environment.apiUrl}/genres`);
   }
 

@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GenreService } from '../core/services/genre.service';
-import { CreateAnimeService } from '../core/services/create-anime.service';
-import { Genre } from '../shared/models/genre';
+import { GenreService } from '../../core/services/genre.service';
+import { CreateAnimeService } from '../../core/services/anime.service';
+import { Genre } from '../../shared/models/genre';
 
 @Component({
   selector: 'app-create-anime',
@@ -87,41 +87,29 @@ export class CreateAnimeComponent implements OnInit {
 
     const formData: any = new FormData();
 
-    formData.append('english_title', this.animeForm.get('english_title')!.value);
-    formData.append('romanji_title', this.animeForm.get('romanji_title')!.value);
-    formData.append('number_of_episodes', this.animeForm.get('number_of_episodes')!.value);
+    formData.append(
+      'english_title',
+      this.animeForm.get('english_title')!.value
+    );
+    formData.append(
+      'romanji_title',
+      this.animeForm.get('romanji_title')!.value
+    );
+    formData.append(
+      'number_of_episodes',
+      this.animeForm.get('number_of_episodes')!.value
+    );
     formData.append(
       'start_air_date',
       this.animeForm.get('start_air_date')!.value
     );
-    formData.append(
-      'end_air_date',
-      this.animeForm.get('end_air_date')!.value
-    );
-    formData.append(
-      'description',
-      this.animeForm.get('description')!.value
-    );
-    formData.append(
-      'season',
-      this.animeForm.get('season')!.value
-    );
-    formData.append(
-      'studio',
-      this.animeForm.get('studio')!.value
-    );
-    formData.append(
-      'source',
-      this.animeForm.get('source')!.value
-    );
-    formData.append(
-      'duration',
-      this.animeForm.get('duration')!.value
-    );
-    formData.append(
-      'age_rating',
-      this.animeForm.get('age_rating')!.value
-    );
+    formData.append('end_air_date', this.animeForm.get('end_air_date')!.value);
+    formData.append('description', this.animeForm.get('description')!.value);
+    formData.append('season', this.animeForm.get('season')!.value);
+    formData.append('studio', this.animeForm.get('studio')!.value);
+    formData.append('source', this.animeForm.get('source')!.value);
+    formData.append('duration', this.animeForm.get('duration')!.value);
+    formData.append('age_rating', this.animeForm.get('age_rating')!.value);
     genreIds.forEach((genreId: any) => {
       formData.append('genre_ids[]', genreId);
     });
@@ -141,4 +129,5 @@ export class CreateAnimeComponent implements OnInit {
     if (anime.target.files && anime.target.files[0]) {
       this.selectedFile = anime.target.files[0];
     }
+  }
 }

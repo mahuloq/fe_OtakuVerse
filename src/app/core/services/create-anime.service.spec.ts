@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CreateAnimeService } from './create-anime.service';
+import { CreateAnimeService } from './anime.service';
 
 describe('CreateAnimeService', () => {
   let service: CreateAnimeService;
