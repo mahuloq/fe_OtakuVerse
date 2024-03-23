@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GenreService } from '../../core/services/genre.service';
-import { CreateAnimeService } from '../../core/services/anime.service';
+import { AnimeService } from '../../core/services/anime.service';
 import { Genre } from '../../shared/models/genre';
 
 @Component({
@@ -36,7 +36,7 @@ export class CreateAnimeComponent implements OnInit {
   constructor(
     private router: Router,
     private genreService: GenreService,
-    private createAnime: CreateAnimeService
+    private animeService: AnimeService
   ) {}
 
   genres: Genre[] = [];
@@ -113,16 +113,20 @@ export class CreateAnimeComponent implements OnInit {
     genreIds.forEach((genreId: any) => {
       formData.append('genre_ids[]', genreId);
     });
-    formData.append('cover_image', this.selectedFile, this.selectedFile!.name);
+    // formData.append('cover_image', this.selectedFile, this.selectedFile!.name);
 
-    this.createAnime.createAnime(formData).subscribe({
+    this.animeService.createAnime(formData).subscribe({
       next: () => {
-        this.router.navigate(['/animes']);
+        // this.router.navigate(['/animes']);
       },
       error: (error) => {
         console.log(error);
       },
     });
+    // console.log('FormData content:');
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ': ' + pair[1]);
+    // }
   }
 
   onFileSelected(anime: any) {

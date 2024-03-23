@@ -7,7 +7,7 @@ import { Anime } from '../../shared/models/anime';
 @Injectable({
   providedIn: 'root',
 })
-export class CreateAnimeService {
+export class AnimeService {
   constructor(private http: HttpClient) {}
 
   getAnimes(page: number) {

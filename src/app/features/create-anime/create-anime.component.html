@@ -1,8 +1,20 @@
-<form [formGroup]="animeForm">
+<form [formGroup]="animeForm" (ngSubmit)="onCreateAnime()">
   <table>
     <tr>
+      <td>English Title:</td>
+      <td><input type="text" formControlName="english_title" /></td>
+    </tr>
+    <tr>
+      <td>Romanji Title:</td>
+      <td><input type="text" formControlName="romanji_title" /></td>
+    </tr>
+    <tr>
+      <td>Start Air Date:</td>
+      <td><input type="date" formControlName="start_air_date" /></td>
+    </tr>
+    <tr>
       <td>End Air Date:</td>
-      <td><input type="text" formControlName="end_air_date" /></td>
+      <td><input type="date" formControlName="end_air_date" /></td>
     </tr>
     <tr>
       <td>Number of Episodes:</td>
@@ -39,13 +51,21 @@
         <div formArrayName="genreIds">
           @for(genre of genres; track genre.id){
 
-          <label
-            ><input type="checkbox" [formControlName]="$index" />
-            [value]="genre.id" {{ genre.name }}</label
-          >}
+          <input
+            type="checkbox"
+            [formControlName]="$index"
+            [value]="genre.id"
+          />
+          {{ genre.name }}
+          }
         </div>
         }
       </td>
     </tr>
+    <!-- <div>
+      <label for="cover_image">Cover Image</label>
+      <input type="file" (change)="onFileSelected($event)" id="cover_image" />
+    </div> -->
+    <button type="submit">Create Anime</button>
   </table>
 </form>
