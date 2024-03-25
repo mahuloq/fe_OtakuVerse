@@ -1,0 +1,26 @@
+<div>
+  <h1>Anime Details</h1>
+  <div>
+    <p><strong>English Title:</strong> {{ anime.english_title }}</p>
+    <p><strong>Romanji Title:</strong> {{ anime.romanji_title }}</p>
+    <p><strong>Start Air Date:</strong> {{ anime.start_air_date }}</p>
+    <p><strong>End Air Date:</strong> {{ anime.end_air_date }}</p>
+    <p><strong>Number of Episodes:</strong> {{ anime.number_of_episodes }}</p>
+    <p><strong>Description:</strong> {{ anime.description }}</p>
+    <p><strong>Season:</strong> {{ anime.season }}</p>
+    <p><strong>Studio:</strong> {{ anime.studio }}</p>
+    <p><strong>Source:</strong> {{ anime.source }}</p>
+    <p><strong>Duration:</strong> {{ anime.duration }}</p>
+    <p><strong>Age Rating:</strong> {{ anime.age_rating }}</p>
+    <p>
+      <strong>Genres:</strong>
+      @for(genre of anime.genres; track genre.id){
+      <span>
+        {{ genre.name }}
+
+        @if(genre !== anime.genres[anime.genres.length - 1]){<span>, </span>
+        }</span
+      >}
+    </p>
+  </div>
+</div>

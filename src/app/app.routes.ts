@@ -33,4 +33,18 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: 'anime/:id/:name',
+    loadComponent: () =>
+      import('./features/anime-detailed/anime-detailed.component').then(
+        (m) => m.AnimeDetailedComponent
+      ),
+  },
+  {
+    path: 'anime/:id',
+    loadComponent: () =>
+      import('./features/anime-detailed/anime-detailed.component').then(
+        (m) => m.AnimeDetailedComponent
+      ),
+  },
 ];
