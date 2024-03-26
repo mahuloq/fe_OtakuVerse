@@ -113,20 +113,17 @@ export class CreateAnimeComponent implements OnInit {
     genreIds.forEach((genreId: any) => {
       formData.append('genre_ids[]', genreId);
     });
-    // formData.append('cover_image', this.selectedFile, this.selectedFile!.name);
+    formData.append('cover_image', this.selectedFile, this.selectedFile!.name);
 
     this.animeService.createAnime(formData).subscribe({
-      next: () => {
-        // this.router.navigate(['/animes']);
+      next: (data) => {
+        this.router.navigate(['/']);
+        console.log(data);
       },
       error: (error) => {
         console.log(error);
       },
     });
-    // console.log('FormData content:');
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ': ' + pair[1]);
-    // }
   }
 
   onFileSelected(anime: any) {
