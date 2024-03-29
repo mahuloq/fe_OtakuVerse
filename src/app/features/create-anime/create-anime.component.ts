@@ -113,7 +113,7 @@ export class CreateAnimeComponent implements OnInit {
     genreIds.forEach((genreId: any) => {
       formData.append('genre_ids[]', genreId);
     });
-    formData.append('cover_image', this.selectedFile, this.selectedFile!.name);
+    formData.append('cover_photo', this.selectedFile, this.selectedFile!.name);
 
     this.animeService.createAnime(formData).subscribe({
       next: (data) => {

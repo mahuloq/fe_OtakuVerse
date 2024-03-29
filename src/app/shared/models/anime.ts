@@ -12,7 +12,7 @@ export class Anime {
   source: string;
   duration: number;
   age_rating: string;
-  cover_image_url: string;
+  cover_photo_url: string;
   genres: Genre[];
 
   constructor(anime: any) {
@@ -28,6 +28,6 @@ export class Anime {
     this.source = anime.source || '';
     this.duration = anime.duration || 0;
     this.genres = anime.genres;
-    this.cover_image_url = anime.cover_image_url;
+    this.cover_photo_url = anime.cover_photo_url;
   }
 }

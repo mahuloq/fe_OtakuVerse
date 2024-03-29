@@ -24,7 +24,7 @@ export class AnimeDetailedComponent implements OnInit {
     duration: '',
     age_rating: '',
     genres: [],
-    cover_image_url: '',
+    cover_photo_url: '',
   });
 
   animeId: number = 0;
@@ -43,7 +43,7 @@ export class AnimeDetailedComponent implements OnInit {
     this.animeService.getAnime(this.animeId).subscribe((anime) => {
       this.anime = { ...anime };
 
-      console.log(anime.cover_image_url);
+      console.log(anime.cover_photo_url);
     });
   }
 }
