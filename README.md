@@ -1,27 +1,39 @@
-# FeAnimeApp
+![GitHub forks](https://img.shields.io/github/forks/mahuloq/otakuverse)![GitHub License](https://img.shields.io/github/license/mahuloq/fe_OtakuVerse)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Otakuverse Frontend
 
-## Code scaffolding
+Otakuverse Frontend is the public facing part of the Otakuverse project. The backend of which can be found here
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+https://github.com/mahuloq/OtakuVerse
 
-## Build
+The Otakuverse project was made to provide a more community managed version of an anime database. Otakuverse allows users to add and edit animes, upload images, create cast a crews with links to the shows they have worked on. It also allows rating of shows and uses rankings provided by users to provide a daily updated top anime list. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+1. Fork this repository.
+2. Clone your repository to your local environment.
+3. Run NPM Install to install all required dependencies.
+```bash
+npm install
+```
+4. Change the environments provided to your specific development or production environments.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Usage
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+Usage Info goes here
+```
 
-## Further help
+## Contributing
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
