@@ -22,9 +22,9 @@ npm install
 
 
 ## Usage
-
+Run NG S on your front end
 ```bash
-Usage Info goes here
+ng s -o
 ```
 
 ## Contributing
