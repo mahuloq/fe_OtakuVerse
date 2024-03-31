@@ -1,5 +1,10 @@
-<img alt="Discord" src="https://img.shields.io/discord/1223802253010407516?link=https%3A%2F%2Fdiscord.gg%2Fxay6yPavuS">
 
+
+<a href="https://discord.gg/xay6yPavuS">
+  <img alt="Discord" src="https://img.shields.io/discord/1223802253010407516">
+</a>
+
+Click here to join the projects discord.
 
 ![GitHub forks](https://img.shields.io/github/forks/mahuloq/otakuverse)  ![GitHub License](https://img.shields.io/github/license/mahuloq/fe_OtakuVerse) ![GitHub Repo stars](https://img.shields.io/github/stars/mahuloq/fe_OtakuVerse) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/mahuloq/fe_OtakuVerse)
 
