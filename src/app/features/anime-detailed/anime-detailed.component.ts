@@ -24,6 +24,8 @@ export class AnimeDetailedComponent implements OnInit {
     duration: '',
     age_rating: '',
     genres: [],
+    cast_and_crews: [],
+    reviews: [],
     cover_photo_url: '',
   });
 

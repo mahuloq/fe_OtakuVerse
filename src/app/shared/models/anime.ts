@@ -1,4 +1,6 @@
+import { CastAndCrew } from './castAndCrew';
 import { Genre } from './genre';
+import { Review } from './review';
 
 export class Anime {
   english_title: string;
@@ -14,6 +16,8 @@ export class Anime {
   age_rating: string;
   cover_photo_url: string;
   genres: Genre[];
+  cast_and_crews: CastAndCrew[];
+  reviews: Review[];
 
   constructor(anime: any) {
     this.english_title = anime.english_title || '';
@@ -28,6 +32,8 @@ export class Anime {
     this.source = anime.source || '';
     this.duration = anime.duration || 0;
     this.genres = anime.genres;
+    this.cast_and_crews = anime.cast_and_crews;
+    this.reviews = anime.reviews;
     this.cover_photo_url = anime.cover_photo_url;
   }
 }

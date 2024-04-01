@@ -22,6 +22,36 @@
         }</span
       >}
     </p>
+    <br />
+    <h2>Cast and Crew</h2>
+    <br />
+    <ul>
+      @for(castAndCrew of anime.cast_and_crews; track castAndCrew.id){
+      <li>
+        <p>Character: {{ castAndCrew.character }}</p>
+        <p>Role: {{ castAndCrew.role }}</p>
+        <p>
+          Person: {{ castAndCrew.person.first_name }}
+          {{ castAndCrew.person.last_name }}
+        </p>
+        @if(castAndCrew.person.language !== null){
+        <p>Release: {{ castAndCrew.person.language }}</p>
+        }
+        <br />
+      </li>
+      }
+    </ul>
+    <h2>Reviews</h2>
+    <br />
+    <ul>
+      @for(review of anime.reviews; track review.id){
+      <li>
+        <p>User: {{ review.user.username }}</p>
+        <p>{{ review.content }}</p>
+        <br />
+      </li>
+      }
+    </ul>
     <div class="anime-cover-photo">
       <img [src]="anime.cover_photo_url || ''" alt="" />
     </div>
