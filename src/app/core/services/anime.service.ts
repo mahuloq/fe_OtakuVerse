@@ -10,8 +10,13 @@ import { Anime } from '../../shared/models/anime';
 export class AnimeService {
   constructor(private http: HttpClient) {}
 
-  getAnimes(page: number) {
-    return this.http.get<Anime[]>(`${environment.apiUrl}/animes?page=${page}`);
+  // This is for when I add a page serializer
+  // getAnimes(page: number) {
+  //   return this.http.get<Anime[]>(`${environment.apiUrl}/animes?page=${page}`);
+  // }
+
+  getAnimes() {
+    return this.http.get<Anime[]>(`${environment.apiUrl}/animes`);
   }
 
   getAnime(id: string | number) {
