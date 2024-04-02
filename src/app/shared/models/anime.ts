@@ -3,6 +3,7 @@ import { Genre } from './genre';
 import { Review } from './review';
 
 export class Anime {
+  id: number;
   english_title: string;
   romanji_title: string;
   start_air_date: string;
@@ -20,6 +21,7 @@ export class Anime {
   reviews: Review[];
 
   constructor(anime: any) {
+    this.id = anime.id || 0;
     this.english_title = anime.english_title || '';
     this.romanji_title = anime.romanji_title || '';
     this.start_air_date = anime.start_air_date;

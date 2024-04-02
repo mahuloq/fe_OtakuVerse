@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Anime } from '../../shared/models/anime';
 import { AnimeService } from '../../core/services/anime.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-top-anime',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './top-anime.component.html',
   styleUrl: './top-anime.component.scss',
 })

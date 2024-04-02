@@ -1,12 +1,36 @@
 <h1>Anime Index</h1>
 
 <ul>
-  @for(anime of animeList; track anime){
-  <li>
-    <!-- Display information about each anime -->
-
-    {{ anime.english_title }}
-    <!-- Add more properties as needed -->
-  </li>
+  @for(anime of animeList; track anime.id){
+  <div class="shaded">
+    <li>Rank:</li>
+    <li>
+      <img
+        [src]="
+          anime.cover_photo_url ||
+          'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg'
+        "
+        alt=""
+      />
+    </li>
+    <div>
+      <li>
+        <!-- Display information about each anime -->
+        <a
+          [routerLink]="['/anime', anime.id]"
+          routerLinkActive="router-link-active"
+          >{{ anime.english_title }}</a
+        >
+      </li>
+      <li>TV: {{ anime.number_of_episodes }} eps</li>
+      <li>
+        {{ anime.start_air_date }} - @if(anime.end_air_date == null){Still
+        Airing} @if(anime.end_air_date !== null){
+        {{ anime.end_air_date }}
+        }
+      </li>
+    </div>
+  </div>
+  <br />
   }
 </ul>
