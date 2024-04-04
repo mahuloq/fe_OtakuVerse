@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthenticationService } from '../auth/services/authentication.service';
-import { ReviewService } from '../../core/services/review-service.service';
+import { ReviewService } from '../../core/services/review.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../shared/models/user';
 
