@@ -25,7 +25,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (res: any) => {
         console.log('Logged in with token:', res.token);
-        this.authService.setToken(res.token);
+        this.authService.setToken(res.token, res.user);
         this.router.navigate(['/']);
       },
       error: (error: any) => {

@@ -1,0 +1,21 @@
+<div class="reviewContainer">
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
+    <div>
+      <p>Review:</p>
+      <textarea formControlName="content" rows="15" cols="75"></textarea>
+    </div>
+    <div>
+      <p>Recommended:</p>
+      <select formControlName="recommend">
+        <option value="recommend" id="recommend">Recommended</option>
+        <option value="mixed_feelings" id="mixed_feelings">
+          Mixed Feelings
+        </option>
+        <option value="do_not_recommend" id="do_not_recommend">
+          Do Not Recommend
+        </option>
+      </select>
+    </div>
+    <button type="submit">Submit Review</button>
+  </form>
+</div>

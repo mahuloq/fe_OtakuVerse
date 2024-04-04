@@ -40,15 +40,32 @@ export const routes: Routes = [
         (m) => m.TopAnimeComponent
       ),
   },
+
   {
-    path: 'anime/:id/:name',
+    path: 'anime/:id',
     loadComponent: () =>
       import('./features/anime-detailed/anime-detailed.component').then(
         (m) => m.AnimeDetailedComponent
       ),
   },
   {
-    path: 'anime/:id',
+    path: 'anime/:id/cast-creation',
+    loadComponent: () =>
+      import('./features/cast-creation/cast-creation.component').then(
+        (m) => m.CastCreationComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'anime/:id/create-review',
+    loadComponent: () =>
+      import('./features/create-review/create-review.component').then(
+        (m) => m.CreateReviewComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'anime/:id/:name',
     loadComponent: () =>
       import('./features/anime-detailed/anime-detailed.component').then(
         (m) => m.AnimeDetailedComponent

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AnimeService } from '../../core/services/anime.service';
 import { Anime } from '../../shared/models/anime';
 
 @Component({
   selector: 'app-anime-detailed',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './anime-detailed.component.html',
   styleUrl: './anime-detailed.component.scss',
 })

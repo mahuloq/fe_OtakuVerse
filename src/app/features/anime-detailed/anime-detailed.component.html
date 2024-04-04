@@ -23,7 +23,17 @@
       >}
     </p>
     <br />
-    <h2>Cast and Crew</h2>
+    <div class="cast">
+      <h2>Cast and Crew</h2>
+      <h6>
+        <a
+          [routerLink]="['/anime', anime.id, 'cast-creation']"
+          routerLinkActive="router-link-active"
+        >
+          Edit
+        </a>
+      </h6>
+    </div>
     <br />
     <ul>
       @for(castAndCrew of anime.cast_and_crews; track castAndCrew.id){
@@ -41,7 +51,16 @@
       </li>
       }
     </ul>
-    <h2>Reviews</h2>
+    <div class="reviews">
+      <h2>Reviews</h2>
+      <h6>
+        <a
+          [routerLink]="['/anime', anime.id, 'create-review']"
+          routerLinkActive="router-link-active"
+          >Create Review</a
+        >
+      </h6>
+    </div>
     <br />
     <ul>
       @for(review of anime.reviews; track review.id){
