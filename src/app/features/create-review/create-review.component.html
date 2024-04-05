@@ -2,7 +2,12 @@
   <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
     <div>
       <p>Review:</p>
-      <textarea formControlName="content" rows="15" cols="75"></textarea>
+      <textarea
+        formControlName="content"
+        rows="15"
+        cols="75"
+        class="review-text"
+      ></textarea>
     </div>
     <div>
       <p>Recommended:</p>

@@ -40,6 +40,13 @@ export const routes: Routes = [
         (m) => m.TopAnimeComponent
       ),
   },
+  {
+    path: 'profile/:username',
+    loadComponent: () =>
+      import('./features/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
+  },
 
   {
     path: 'anime/:id',

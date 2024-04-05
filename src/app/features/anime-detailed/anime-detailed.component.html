@@ -65,8 +65,13 @@
     <ul>
       @for(review of anime.reviews; track review.id){
       <li>
-        <p>User: {{ review.user.username }}</p>
-        <p>{{ review.content }}</p>
+        <p class="username">
+          Username:
+          <a [routerLink]="['/profile', review.user.username]">
+            {{ review.user.username }}
+          </a>
+        </p>
+        <p class="review-text">{{ review.content }}</p>
         <br />
       </li>
       }

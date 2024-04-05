@@ -5,10 +5,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthenticationService } from '../auth/services/authentication.service';
+
 import { ReviewService } from '../../core/services/review.service';
-import { ActivatedRoute } from '@angular/router';
-import { User } from '../../shared/models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Review } from '../../shared/models/review';
 
 @Component({
   selector: 'app-create-review',
@@ -19,12 +19,11 @@ import { User } from '../../shared/models/user';
 })
 export class CreateReviewComponent implements OnInit {
   animeId: number = 0;
-  currentUser: User | null = null;
 
   constructor(
-    private authService: AuthenticationService,
     private reviewService: ReviewService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   reviewForm = new FormGroup({
@@ -33,12 +32,28 @@ export class CreateReviewComponent implements OnInit {
       Validators.minLength(10),
     ]),
     recommend: new FormControl('recommend', Validators.required),
+    anime_id: new FormControl(0),
   });
 
   ngOnInit(): void {
-    this.animeId = this.route.snapshot.params['id'];
-    this.currentUser = this.authService.getUserFromLocalStorage();
+    this.animeId = +this.route.snapshot.params['id'];
+
+    this.reviewForm.patchValue({
+      anime_id: this.animeId,
+    });
   }
 
-  onSubmitReview() {}
+  onSubmitReview() {
+    const newReview = new Review(this.reviewForm.value);
+
+    this.reviewService.submitReview(newReview).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.router.navigate(['/anime', this.animeId]);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }

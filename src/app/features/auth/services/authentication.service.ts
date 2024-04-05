@@ -20,10 +20,13 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<{ token: string }>(`${environment.apiUrl}/login`, {
-      username,
-      password,
-    });
+    return this.http.post<{ token: string; user: User }>(
+      `${environment.apiUrl}/login`,
+      {
+        username,
+        password,
+      }
+    );
   }
 
   setToken(token: string, user: any) {
