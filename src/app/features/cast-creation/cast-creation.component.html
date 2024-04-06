@@ -1,1 +1,17 @@
-<p>cast-creation works!</p>
+<p>cast creation is working</p>
+<form [formGroup]="castForm" (ngSubmit)="onCreateCrew()">
+  <table>
+    <tr>
+      <td>Person</td>
+      <td><input type="text" formControlName="person_id" /></td>
+    </tr>
+    <tr>
+      <td>Role:</td>
+      <td><input type="text" formControlName="role" /></td>
+    </tr>
+    <tr>
+      <td>Character</td>
+      <td><input type="date" formControlName="character" /></td>
+    </tr>
+  </table>
+</form>

@@ -15,6 +15,10 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user == undefined) {
+      this.logout();
+    }
     this.tokenSubject.next(token);
     this.userSubject.next(user);
   }
