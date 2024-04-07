@@ -74,6 +74,7 @@ export class CastCreationComponent implements OnInit {
   }
 
   onCreateCrew() {
-    // Implement creation logic here, including using person_id from the form
+    // on submit do this
+    this.castService.createCast(this.castForm);
   }
 }
