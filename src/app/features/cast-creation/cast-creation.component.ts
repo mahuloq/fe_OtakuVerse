@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CastService } from '../../core/services/cast.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { PersonSearchService } from '../../core/services/person-search.service';
+import { Person } from '../../shared/models/person';
 
 @Component({
   selector: 'app-cast-creation',
@@ -14,10 +15,11 @@ import { PersonSearchService } from '../../core/services/person-search.service';
 })
 export class CastCreationComponent implements OnInit {
   animeId: number = 0;
+  searchResults: Person[] = [];
 
   castForm = new FormGroup({
-    person_id: new FormControl(null),
-    person_name: new FormControl(null),
+    person_id: new FormControl(0),
+    person_name: new FormControl(''),
     anime_id: new FormControl(0),
     role: new FormControl(null),
     character: new FormControl(null),
@@ -42,19 +44,33 @@ export class CastCreationComponent implements OnInit {
       ?.valueChanges.pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        switchMap((personName) => this.personSearch.searchByName(personName!))
+
+        switchMap((name) => this.personSearch.searchByName(name!))
       )
       .subscribe(
-        (response) => {
-          // Handle search results here
-          console.log('Search results:', response);
-          // Update UI to display search results or suggestions
+        (response: Person[]) => {
+          // Search results here
+          this.searchResults = response;
+
+          // Will display a dropdown of matches, allowing person to pick the correct person.
+
+          // Will update person_id with data
         },
         (error) => {
           console.error('Error:', error);
           // Handle error if any
         }
       );
+  }
+
+  selectPerson(person: Person) {
+    this.castForm.patchValue({
+      person_id: person.id,
+      person_name: `${person.first_name} ${person.last_name}`,
+    });
+    console.log(person.id);
+    console.log(person);
+    this.searchResults = [];
   }
 
   onCreateCrew() {

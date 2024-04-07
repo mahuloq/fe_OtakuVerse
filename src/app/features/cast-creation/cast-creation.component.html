@@ -1,10 +1,29 @@
-<p>cast creation is working</p>
 <form [formGroup]="castForm" (ngSubmit)="onCreateCrew()">
   <table>
     <tr>
       <td>Person:</td>
       <td>
-        <input type="text" formControlName="person_id" />
+        <input type="text" formControlName="person_name" />
+        @if(searchResults.length > 0){
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Select Person
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @for(person of searchResults; track person.id){
+            <button class="dropdown-item" (click)="selectPerson(person)">
+              {{ person.first_name }} {{ person.last_name }}</button
+            >}
+          </div>
+        </div>
+        }
       </td>
     </tr>
     <tr>
@@ -16,4 +35,5 @@
       <td><input type="text" formControlName="character" /></td>
     </tr>
   </table>
+  <button type="submit">Submit Staff Entry</button>
 </form>
