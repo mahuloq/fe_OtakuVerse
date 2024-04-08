@@ -5,6 +5,7 @@ import { CastService } from '../../core/services/cast.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { PersonSearchService } from '../../core/services/person-search.service';
 import { Person } from '../../shared/models/person';
+import { CastAndCrew } from '../../shared/models/castAndCrew';
 
 @Component({
   selector: 'app-cast-creation',
@@ -75,6 +76,16 @@ export class CastCreationComponent implements OnInit {
 
   onCreateCrew() {
     // on submit do this
-    this.castService.createCast(this.castForm);
+    const newCast = new CastAndCrew(this.castForm.value);
+
+    this.castService.createCast(newCast).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.router.navigate(['/anime', this.animeId]);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

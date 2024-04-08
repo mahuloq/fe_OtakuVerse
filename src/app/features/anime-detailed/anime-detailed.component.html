@@ -41,11 +41,11 @@
         <p>Character: {{ castAndCrew.character }}</p>
         <p>Role: {{ castAndCrew.role }}</p>
         <p>
-          Person: {{ castAndCrew.person.first_name }}
-          {{ castAndCrew.person.last_name }}
+          Person: {{ castAndCrew.person!.first_name }}
+          {{ castAndCrew.person!.last_name }}
         </p>
-        @if(castAndCrew.person.language !== null){
-        <p>Release: {{ castAndCrew.person.language }}</p>
+        @if(castAndCrew.person!.language !== null){
+        <p>Release: {{ castAndCrew.person!.language }}</p>
         }
         <br />
       </li>

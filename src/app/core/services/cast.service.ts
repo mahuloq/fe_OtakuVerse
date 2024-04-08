@@ -11,7 +11,7 @@ export class CastService {
 
   createCast(castData: CastAndCrew) {
     return this.http.post<CastAndCrew>(
-      `${environment.apiUrl}/cast_and_crews`,
+      `${environment.apiUrl}/cast_and_crew`,
       castData
     );
   }
