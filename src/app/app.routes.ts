@@ -42,6 +42,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile/:username',
+    pathMatch: 'full',
     loadComponent: () =>
       import('./features/profile/profile.component').then(
         (m) => m.ProfileComponent

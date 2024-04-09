@@ -44,8 +44,6 @@ export class AnimeDetailedComponent implements OnInit {
 
     this.animeService.getAnime(this.animeId).subscribe((anime) => {
       this.anime = { ...anime };
-
-      console.log(anime.cover_photo_url);
     });
   }
 }

@@ -5,7 +5,7 @@ import { CastService } from '../../core/services/cast.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { PersonSearchService } from '../../core/services/person-search.service';
 import { Person } from '../../shared/models/person';
-import { CastAndCrew } from '../../shared/models/castAndCrew';
+import { CreateCast } from '../../shared/models/createCast';
 
 @Component({
   selector: 'app-cast-creation',
@@ -76,7 +76,14 @@ export class CastCreationComponent implements OnInit {
 
   onCreateCrew() {
     // on submit do this
-    const newCast = new CastAndCrew(this.castForm.value);
+    const castAndCrewData = {
+      person_id: this.castForm.get('person_id')?.value,
+      anime_id: this.castForm.get('anime_id')?.value,
+      role: this.castForm.get('role')?.value,
+      character: this.castForm.get('character')?.value,
+    };
+
+    const newCast = new CreateCast(castAndCrewData);
 
     this.castService.createCast(newCast).subscribe({
       next: (data) => {

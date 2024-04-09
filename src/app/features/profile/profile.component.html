@@ -1,1 +1,28 @@
-<p>profile works!</p>
+@if(profile){
+<div>
+  <h1>User Profile</h1>
+  <div>
+    <p><strong>ID:</strong> {{ profile.id }}</p>
+    <p><strong>Username:</strong> {{ profile.user.username }}</p>
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+    <p><strong>Favorites:</strong> {{ profile.favorites }}</p>
+    <p>
+      <strong>Profile Photo:</strong>
+      <img [src]="profile.profile_photo_url" alt="Profile Photo" />
+    </p>
+    <h2>Anime Lists</h2>
+    <ul>
+      @for(list of profile.user.anime_lists; track profile.user.anime_lists){
+      <li>
+        <p><strong>Anime ID:</strong> {{ profile.user.anime_lists }}</p>
+        <p><strong>User ID:</strong> {{ profile.user.anime_lists }}</p>
+        <p><strong>List Type:</strong> {{ profile.user.anime_lists }}</p>
+        <p><strong>Start Date:</strong> {{ profile.user.anime_lists }}</p>
+        <p><strong>End Date:</strong> {{ profile.user.anime_lists }}</p>
+        <p><strong>Episodes Watched:</strong> {{ profile.user.anime_lists }}</p>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+}

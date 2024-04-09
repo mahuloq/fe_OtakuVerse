@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { CreateCast } from '../../shared/models/createCast';
+import { Profile } from '../../shared/models/profile';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CastService {
+export class ProfileService {
   constructor(private http: HttpClient) {}
 
-  createCast(castData: CreateCast) {
-    return this.http.post<CreateCast>(
-      `${environment.apiUrl}/cast_and_crew`,
-      castData
-    );
+  getProfile(username: string) {
+    return this.http.get<Profile>(`${environment.apiUrl}/profiles/${username}`);
   }
 }

@@ -15,7 +15,7 @@ export class PersonSearchService {
       return of([]);
     } else {
       return this.http
-        .get<any>(`${environment.apiUrl}/api/search`, {
+        .get<any>(`${environment.apiUrl}/api/searchPerson`, {
           params: { name },
         })
         .pipe(
