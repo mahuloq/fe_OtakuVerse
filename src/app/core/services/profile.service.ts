@@ -12,4 +12,9 @@ export class ProfileService {
   getProfile(username: string) {
     return this.http.get<Profile>(`${environment.apiUrl}/profiles/${username}`);
   }
+
+  removeAnimeFromList(anime: any) {
+    console.log('Service Delete');
+    return this.http.delete(`${environment.apiUrl}/anime_lists/${anime.id}`);
+  }
 }

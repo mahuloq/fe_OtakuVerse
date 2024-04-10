@@ -18,26 +18,20 @@
     </p>
     <h2>Anime Lists</h2>
     <ul>
-      @for(list of profile.user.anime_lists; track profile.user.anime_lists){
+      @for(anime of profile.user.anime_lists; track $index){
       <li>
-        <p>
-          <strong>Anime ID:</strong> {{ profile.user.anime_lists.anime_id }}
-        </p>
-        <p><strong>User ID:</strong> {{ profile.user.anime_lists.user_id }}</p>
-        <p>
-          <strong>List Type:</strong> {{ profile.user.anime_lists.list_type }}
-        </p>
-        <p>
-          <strong>Start Date:</strong> {{ profile.user.anime_lists.start_date }}
-        </p>
-        <p>
-          <strong>End Date:</strong> {{ profile.user.anime_lists.end_date }}
-        </p>
+        {{ $index }}
+        <p><strong>Anime ID:</strong> {{ anime.anime_id }}</p>
+        <p><strong>User ID:</strong> {{ anime.user_id }}</p>
+        <p><strong>List Type:</strong> {{ anime.list_type }}</p>
+        <p><strong>Start Date:</strong> {{ anime.start_date }}</p>
+        <p><strong>End Date:</strong> {{ anime.end_date }}</p>
         <p>
           <strong>Episodes Watched:</strong>
-          {{ profile.user.anime_lists.episodes_watched }}
+          {{ anime.episodes_watched }}
         </p>
       </li>
+      <button (click)="deleteMe(anime)">Delete This</button>
       }
     </ul>
   </div>
