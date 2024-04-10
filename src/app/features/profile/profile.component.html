@@ -8,7 +8,13 @@
     <p><strong>Favorites:</strong> {{ profile.favorites }}</p>
     <p>
       <strong>Profile Photo:</strong>
-      <img [src]="profile.profile_photo_url" alt="Profile Photo" />
+      <img
+        [src]="
+          profile.profile_photo_url ||
+          'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg'
+        "
+        alt="Profile Photo"
+      />
     </p>
     <h2>Anime Lists</h2>
     <ul>
