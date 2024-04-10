@@ -12,6 +12,6 @@ export class Profile {
     this.bio = profileData.bio || '';
     this.profile_photo_url = profileData.profile_photo_url;
     this.favorites = profileData.favorites;
-    this.user = profileData.user;
+    this.user = new ProfileUser(profileData.user);
   }
 }
