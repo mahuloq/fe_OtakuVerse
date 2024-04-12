@@ -1,3 +1,24 @@
+<div class="cast">
+  <h2>Cast and Crew</h2>
+</div>
+<ul>
+  @for(castAndCrew of castCrew; track $index){
+  <li>
+    {{ $index }}
+    <button (click)="editCrew(castAndCrew)">Edit</button>
+    <p>Character: {{ castAndCrew.character }}</p>
+    <p>Role: {{ castAndCrew.role }}</p>
+    <p>
+      Person: {{ castAndCrew.person!.first_name }}
+      {{ castAndCrew.person!.last_name }}
+    </p>
+    @if(castAndCrew.person!.language !== null){
+    <p>Release: {{ castAndCrew.person!.language }}</p>
+    }
+    <br />
+  </li>
+  }
+</ul>
 <form [formGroup]="castForm" (ngSubmit)="onCreateCrew()">
   <table>
     <tr>
@@ -35,5 +56,10 @@
       <td><input type="text" formControlName="character" /></td>
     </tr>
   </table>
-  <button type="submit">Submit Staff Entry</button>
+  <button type="submit">
+    {{ editMode ? "Update Crew" : "Submit Staff Entry" }}
+  </button>
+  @if(editMode){
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+  }
 </form>

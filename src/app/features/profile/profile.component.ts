@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
       });
   }
   deleteMe(anime: any) {
-    this.profileService.removeAnimeFromList(anime);
+    this.profileService.removeAnimeFromList(anime).subscribe();
     console.log('Deleted');
   }
 }

@@ -6,6 +6,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { PersonSearchService } from '../../core/services/person-search.service';
 import { Person } from '../../shared/models/person';
 import { CreateCast } from '../../shared/models/createCast';
+import { CastAndCrew } from '../../shared/models/castAndCrew';
 
 @Component({
   selector: 'app-cast-creation',
@@ -17,13 +18,16 @@ import { CreateCast } from '../../shared/models/createCast';
 export class CastCreationComponent implements OnInit {
   animeId: number = 0;
   searchResults: Person[] = [];
+  castCrew: CastAndCrew[] = [];
+  editMode: boolean = false;
 
   castForm = new FormGroup({
+    id: new FormControl(0),
     person_id: new FormControl(0),
     person_name: new FormControl(''),
     anime_id: new FormControl(0),
-    role: new FormControl(null),
-    character: new FormControl(null),
+    role: new FormControl(''),
+    character: new FormControl(''),
   });
 
   constructor(
@@ -35,6 +39,15 @@ export class CastCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.animeId = +this.route.snapshot.params['id'];
+
+    this.castService.getFullCrew(this.animeId).subscribe({
+      next: (castAndCrew: CastAndCrew[]) => {
+        this.castCrew = castAndCrew;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
 
     this.castForm.patchValue({
       anime_id: this.animeId,
@@ -48,20 +61,14 @@ export class CastCreationComponent implements OnInit {
 
         switchMap((name) => this.personSearch.searchByName(name!))
       )
-      .subscribe(
-        (response: Person[]) => {
-          // Search results here
+      .subscribe({
+        next: (response: Person[]) => {
           this.searchResults = response;
-
-          // Will display a dropdown of matches, allowing person to pick the correct person.
-
-          // Will update person_id with data
         },
-        (error) => {
-          console.error('Error:', error);
-          // Handle error if any
-        }
-      );
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   selectPerson(person: Person) {
@@ -76,19 +83,70 @@ export class CastCreationComponent implements OnInit {
 
   onCreateCrew() {
     // on submit do this
-    const castAndCrewData = {
-      person_id: this.castForm.get('person_id')?.value,
-      anime_id: this.castForm.get('anime_id')?.value,
-      role: this.castForm.get('role')?.value,
-      character: this.castForm.get('character')?.value,
-    };
 
-    const newCast = new CreateCast(castAndCrewData);
+    if (this.editMode) {
+      const castAndCrewData = {
+        id: this.castForm.get('id')?.value,
+        person_id: this.castForm.get('person_id')?.value,
+        anime_id: this.castForm.get('anime_id')?.value,
+        role: this.castForm.get('role')?.value,
+        character: this.castForm.get('character')?.value,
+      };
+      console.log(castAndCrewData);
+      const updateCast = new CreateCast(castAndCrewData);
+      console.log(updateCast);
+      this.updateCrew(updateCast);
+    } else {
+      const castAndCrewData = {
+        person_id: this.castForm.get('person_id')?.value,
+        anime_id: this.castForm.get('anime_id')?.value,
+        role: this.castForm.get('role')?.value,
+        character: this.castForm.get('character')?.value,
+      };
 
-    this.castService.createCast(newCast).subscribe({
+      const newCast = new CreateCast(castAndCrewData);
+      this.castService.createCast(newCast).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.router.navigate(['/anime', this.animeId]);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
+  }
+
+  editCrew(cast: CastAndCrew) {
+    this.castForm.patchValue({
+      id: cast.id,
+      person_id: cast.person_id,
+      person_name: `${cast.person!.first_name} ${cast.person!.last_name}`,
+      role: cast.role,
+      character: cast.character,
+    });
+    console.log(cast);
+    console.log(this.castForm.value.id);
+    this.editMode = true;
+  }
+
+  cancelEdit() {
+    this.castForm.patchValue({
+      person_id: 0,
+      person_name: '',
+      role: '',
+      character: '',
+    });
+    this.editMode = false;
+  }
+
+  updateCrew(newCast: CreateCast) {
+    this.castService.updateCast(newCast).subscribe({
       next: (data) => {
         console.log(data);
-        this.router.navigate(['/anime', this.animeId]);
+        this.castCrew.find((castCrew) => {
+          data.id == castCrew.id;
+        });
       },
       error: (error) => {
         console.log(error);
