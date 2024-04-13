@@ -31,4 +31,8 @@ export class TopAnimeComponent implements OnInit {
       }
     );
   }
+
+  hyphenateUrlParams(str: string) {
+    return str.replace(/[:']/g, '').replace(/ /g, '-');
+  }
 }

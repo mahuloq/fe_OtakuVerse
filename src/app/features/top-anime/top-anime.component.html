@@ -17,7 +17,11 @@
       <li>
         <!-- Display information about each anime -->
         <a
-          [routerLink]="['/anime', anime.id]"
+          [routerLink]="[
+            '/anime',
+            anime.id,
+            hyphenateUrlParams(anime.english_title)
+          ]"
           routerLinkActive="router-link-active"
           >{{ anime.english_title }}</a
         >

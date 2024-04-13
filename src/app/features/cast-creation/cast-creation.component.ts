@@ -142,15 +142,28 @@ export class CastCreationComponent implements OnInit {
 
   updateCrew(newCast: CreateCast) {
     this.castService.updateCast(newCast).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.castCrew.find((castCrew) => {
-          data.id == castCrew.id;
-        });
-      },
+      next: (data) => {},
       error: (error) => {
         console.log(error);
       },
     });
+
+    setTimeout(() => {
+      this.castService.getFullCrew(this.animeId).subscribe({
+        next: (castAndCrew: CastAndCrew[]) => {
+          this.castCrew = castAndCrew;
+          this.castForm.patchValue({
+            person_id: 0,
+            person_name: '',
+            role: '',
+            character: '',
+          });
+          this.editMode = false;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }, 100);
   }
 }

@@ -1,7 +1,7 @@
 <div>
   <div class="animeBanner">
     <h1>Anime Details</h1>
-    <a routerLink="">Edit</a>
+    <a [routerLink]="['/anime', anime.id, 'edit-anime']">Edit</a>
   </div>
   <div>
     <p><strong>English Title:</strong> {{ anime.english_title }}</p>
@@ -41,7 +41,9 @@
     <ul>
       @for(castAndCrew of anime.cast_and_crews; track castAndCrew.id){
       <li>
+        @if(castAndCrew.character){
         <p>Character: {{ castAndCrew.character }}</p>
+        }
         <p>Role: {{ castAndCrew.role }}</p>
         <p>
           Person: {{ castAndCrew.person!.first_name }}

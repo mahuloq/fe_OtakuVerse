@@ -4,9 +4,10 @@
 <ul>
   @for(castAndCrew of castCrew; track $index){
   <li>
-    {{ $index }}
     <button (click)="editCrew(castAndCrew)">Edit</button>
+    @if(castAndCrew.character){
     <p>Character: {{ castAndCrew.character }}</p>
+    }
     <p>Role: {{ castAndCrew.role }}</p>
     <p>
       Person: {{ castAndCrew.person!.first_name }}

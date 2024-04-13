@@ -57,6 +57,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'anime/:id/edit-anime',
+    loadComponent: () =>
+      import('./features/edit-anime/edit-anime.component').then(
+        (m) => m.EditAnimeComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'anime/:id/cast-creation',
     loadComponent: () =>
       import('./features/cast-creation/cast-creation.component').then(
