@@ -1,1 +1,80 @@
-<p>edit-anime works!</p>
+<form [formGroup]="animeForm" (ngSubmit)="onUpdateAnime()">
+  <div>
+    <div class="animeBanner">
+      <h1>Anime Details</h1>
+    </div>
+    <div class="editables">
+      <label class="box-label" for="english_title">English Title:</label>
+      <input
+        formControlName="english_title"
+        type="text"
+        placeholder="English Title"
+      />
+      <label class="box-label" for="romanji_title">Romanji Title:</label>
+      <input
+        formControlName="romanji_title"
+        type="text"
+        placeholder="Romanji Title"
+      />
+      <label class="box-label" for="start_air_date">Start Air Date:</label>
+      <input
+        formControlName="start_air_date"
+        type="text"
+        placeholder="Start Air Date"
+      />
+      <label class="box-label" for="End_air_date">End Air Date:</label>
+      <input
+        formControlName="end_air_date"
+        type="text"
+        placeholder="End Air Date"
+      />
+      <label class="box-label" for="number_of_episodes"
+        >Number of Episodes:</label
+      >
+      <input
+        formControlName="number_of_episodes"
+        type="text"
+        placeholder="Number of Episodes"
+      />
+      <label class="box-label" for="description">Description:</label>
+      <textarea
+        #descriptionTextArea
+        formControlName="description"
+        id="description"
+        placeholder="Description"
+        (input)="adjustTextAreaHeight()"
+      ></textarea>
+
+      <label class="box-label" for="season">Season:</label>
+      <input formControlName="season" type="text" placeholder="Season" />
+      <label class="box-label" for="studio">Studio:</label>
+      <input formControlName="studio" type="text" placeholder="Studio" />
+      <label class="box-label" for="source">Source:</label>
+      <input formControlName="source" type="text" placeholder="Source" />
+      <label class="box-label" for="duration">duration:</label>
+      <input formControlName="duration" type="text" placeholder="Duration" />
+      <label class="box-label" for="age_rating">Age Rating:</label>
+      <input
+        formControlName="age_rating"
+        type="text"
+        placeholder="Age Rating"
+      />
+      <p>
+        <strong>Genres:</strong>
+        @for(genre of anime.genres; track genre.id){
+        <span>
+          {{ genre.name }}
+          {{ genre.id }}
+
+          @if(genre !== anime.genres[anime.genres.length - 1]){<span>, </span>
+          }</span
+        >}
+      </p>
+      <br />
+
+      <div class="anime-cover-photo">
+        <img [src]="anime.cover_photo_url || ''" alt="" />
+      </div>
+    </div>
+  </div>
+</form>

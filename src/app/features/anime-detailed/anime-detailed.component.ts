@@ -24,8 +24,6 @@ export class AnimeDetailedComponent implements OnInit {
     duration: '',
     age_rating: '',
     genres: [],
-    cast_and_crews: [],
-    reviews: [],
     cover_photo_url: '',
   });
 
@@ -43,7 +41,7 @@ export class AnimeDetailedComponent implements OnInit {
     this.animeName = this.route.snapshot.paramMap.get('name') || '';
 
     this.animeService.getAnime(this.animeId).subscribe((anime) => {
-      this.anime = { ...anime };
+      this.anime = anime;
     });
   }
 }

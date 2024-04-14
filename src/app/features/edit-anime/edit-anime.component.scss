@@ -1,0 +1,14 @@
+.editables {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-label {
+  margin-top: 0.5rem;
+}
+
+textarea {
+  width: 100%; /* Set the width to 100% of its container */
+  min-height: 100px; /* Set a minimum height to ensure it's not too small */
+  resize: vertical; /* Allow vertical resizing */
+}
