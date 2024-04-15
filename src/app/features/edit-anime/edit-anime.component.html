@@ -61,14 +61,14 @@
       />
       <p>
         <strong>Genres:</strong>
-        @for(genre of anime.genres; track genre.id){
-        <span>
-          {{ genre.name }}
-          {{ genre.id }}
+        @for(genre of animeForm.controls.genres.controls; track $index){
+        @if(genre.value.name != ''){
+        <button (click)="removeGenre(genre.value)">X</button>
 
-          @if(genre !== anime.genres[anime.genres.length - 1]){<span>, </span>
-          }</span
-        >}
+        <span>
+          {{ genre.value.name }}
+          {{ genre.value.id }} </span
+        >}}
       </p>
       <br />
 

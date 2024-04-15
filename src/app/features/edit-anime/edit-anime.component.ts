@@ -34,7 +34,10 @@ export class EditAnimeComponent implements OnInit {
     source: new FormControl(''),
     duration: new FormControl(0),
     age_rating: new FormControl(''),
-    genres: new FormArray([]),
+    genres: new FormArray([
+      new FormGroup({ id: new FormControl(123), name: new FormControl('') }),
+    ]),
+    // genres: new FormArray([]),
   });
 
   anime: Anime = new Anime({
@@ -83,7 +86,15 @@ export class EditAnimeComponent implements OnInit {
         source: anime.source,
         duration: anime.duration,
         age_rating: anime.age_rating,
-        genres: [],
+      });
+
+      anime.genres.forEach((genre: Genre) => {
+        (this.animeForm.get('genres') as FormArray).push(
+          new FormGroup({
+            id: new FormControl(genre.id),
+            name: new FormControl(genre.name),
+          })
+        );
       });
 
       this.adjustTextAreaHeight();
@@ -96,5 +107,12 @@ export class EditAnimeComponent implements OnInit {
     const textArea = this.descriptionTextArea.nativeElement;
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
+  }
+
+  removeGenre(genre: any | undefined | null) {
+    // if (genre != undefined && genre != null) {
+
+    // }
+    console.log(genre);
   }
 }
