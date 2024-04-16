@@ -19,6 +19,7 @@ export class Anime {
   genres: Genre[];
   cast_and_crews: CastAndCrew[];
   reviews: Review[];
+  genre_ids?: number[];
 
   constructor(anime: any) {
     this.id = anime.id || 0;

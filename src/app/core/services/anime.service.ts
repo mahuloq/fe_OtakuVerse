@@ -26,4 +26,8 @@ export class AnimeService {
   createAnime(anime: Anime) {
     return this.http.post(`${environment.apiUrl}/animes`, anime);
   }
+
+  updateAnime(anime: Anime, id: number) {
+    return this.http.put(`${environment.apiUrl}/animes/${id}`, anime);
+  }
 }

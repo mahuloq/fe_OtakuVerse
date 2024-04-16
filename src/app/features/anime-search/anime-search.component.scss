@@ -1,0 +1,65 @@
+/* Search container */
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Search bar */
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Alphabet filter */
+.alphabet-filter {
+  margin-top: 10px;
+}
+
+.alphabet-filter span {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Divider for Genre */
+.genre-divider {
+  margin-bottom: 20px;
+}
+
+.genre-divider h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.genre-divider ul {
+  list-style: none;
+  padding: 0;
+}
+
+.genre-divider li {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+/* Divider for Season */
+.season-divider h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.season-divider ul {
+  list-style: none;
+  padding: 0;
+}
+
+.season-divider li {
+  margin-bottom: 5px;
+  cursor: pointer;
+}

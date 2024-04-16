@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnimeService } from '../../core/services/anime.service';
 import { Anime } from '../../shared/models/anime';
 import {
@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { Genre } from '../../shared/models/genre';
 import { GenreService } from '../../core/services/genre.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-anime',
@@ -21,6 +22,13 @@ import { GenreService } from '../../core/services/genre.service';
 })
 export class EditAnimeComponent implements OnInit {
   @ViewChild('descriptionTextArea') descriptionTextArea!: ElementRef;
+
+  searchResults: Genre[] = [];
+
+  genreForm = new FormGroup({
+    id: new FormControl(0),
+    name: new FormControl(''),
+  });
 
   animeForm = new FormGroup({
     english_title: new FormControl(''),
@@ -34,10 +42,7 @@ export class EditAnimeComponent implements OnInit {
     source: new FormControl(''),
     duration: new FormControl(0),
     age_rating: new FormControl(''),
-    genres: new FormArray([
-      new FormGroup({ id: new FormControl(123), name: new FormControl('') }),
-    ]),
-    // genres: new FormArray([]),
+    genres: new FormArray<FormGroup>([]),
   });
 
   anime: Anime = new Anime({
@@ -63,7 +68,8 @@ export class EditAnimeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private animeService: AnimeService,
-    private genreService: GenreService
+    private genreService: GenreService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -72,7 +78,7 @@ export class EditAnimeComponent implements OnInit {
     this.animeName = this.route.snapshot.paramMap.get('name') || '';
 
     this.animeService.getAnime(this.animeId).subscribe((anime) => {
-      this.anime = { ...anime };
+      this.anime = anime;
 
       this.animeForm.patchValue({
         english_title: anime.english_title,
@@ -99,20 +105,64 @@ export class EditAnimeComponent implements OnInit {
 
       this.adjustTextAreaHeight();
     });
+
+    this.genreForm
+      .get('name')
+      ?.valueChanges.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+
+        switchMap((name) => this.genreService.searchByName(name!))
+      )
+      .subscribe({
+        next: (response: Genre[]) => {
+          this.searchResults = response;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
-  onUpdateAnime() {}
+  onUpdateAnime() {
+    const updatedAnime = new Anime(this.animeForm.value);
+    const genreIds = this.animeForm.value.genres!.map(
+      (genre: Genre) => genre.id
+    );
 
+    updatedAnime.genre_ids = genreIds;
+
+    this.animeService.updateAnime(updatedAnime, this.animeId).subscribe({
+      next: (data) => {
+        this.router.navigate(['/anime', this.animeId]);
+      },
+      error: (error) => {},
+    });
+  }
+
+  // after search, adds genre to form group
+  onAddGenre(genre: Genre) {
+    (this.animeForm.get('genres') as FormArray).push(
+      new FormGroup({
+        id: new FormControl(genre.id),
+        name: new FormControl(genre.name),
+      })
+    );
+    this.searchResults = [];
+    this.genreForm.patchValue({
+      id: 0,
+      name: '',
+    });
+  }
+  //  Removes genre on click
+  removeGenre(index: number) {
+    this.animeForm.controls.genres.removeAt(index);
+    console.log(this.animeForm.controls.genres.value);
+  }
+  // Adjusts height of description text box
   adjustTextAreaHeight() {
     const textArea = this.descriptionTextArea.nativeElement;
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
-  }
-
-  removeGenre(genre: any | undefined | null) {
-    // if (genre != undefined && genre != null) {
-
-    // }
-    console.log(genre);
   }
 }

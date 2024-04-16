@@ -50,6 +50,20 @@ export const routes: Routes = [
   },
 
   {
+    path: 'anime',
+    loadComponent: () =>
+      import('./features/anime-search/anime-search.component').then(
+        (m) => m.AnimeSearchComponent
+      ),
+  },
+  {
+    path: 'anime/seasonal',
+    loadComponent: () =>
+      import('./features/seasonal-anime/seasonal-anime.component').then(
+        (m) => m.SeasonalAnimeComponent
+      ),
+  },
+  {
     path: 'anime/:id',
     loadComponent: () =>
       import('./features/anime-detailed/anime-detailed.component').then(

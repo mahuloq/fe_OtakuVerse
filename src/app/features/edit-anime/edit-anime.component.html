@@ -1,5 +1,9 @@
 <form [formGroup]="animeForm" (ngSubmit)="onUpdateAnime()">
+  <div class="anime-cover-photo">
+    <img [src]="anime.cover_photo_url || ''" alt="" />
+  </div>
   <div>
+    <button type="submit">Update Anime</button>
     <div class="animeBanner">
       <h1>Anime Details</h1>
     </div>
@@ -62,19 +66,43 @@
       <p>
         <strong>Genres:</strong>
         @for(genre of animeForm.controls.genres.controls; track $index){
-        @if(genre.value.name != ''){
-        <button (click)="removeGenre(genre.value)">X</button>
+
+        <button type="button" (click)="removeGenre($index)">X</button>
 
         <span>
           {{ genre.value.name }}
           {{ genre.value.id }} </span
-        >}}
+        >}
       </p>
       <br />
-
-      <div class="anime-cover-photo">
-        <img [src]="anime.cover_photo_url || ''" alt="" />
-      </div>
     </div>
   </div>
+</form>
+<form [formGroup]="genreForm">
+  <tr>
+    <td>Genres:</td>
+    <td>
+      <input type="text" formControlName="name" />
+      @if(searchResults.length > 0){
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Genre
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          @for(searchGenre of searchResults; track searchGenre.id){
+          <button class="dropdown-item" (click)="onAddGenre(searchGenre)">
+            {{ searchGenre.name }}</button
+          >}
+        </div>
+      </div>
+      }
+    </td>
+  </tr>
 </form>

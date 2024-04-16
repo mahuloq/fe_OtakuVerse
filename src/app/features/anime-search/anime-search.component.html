@@ -1,0 +1,32 @@
+<div class="search-container">
+  <!-- Search bar with alphabet filter -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search anime..." />
+    <div class="alphabet-filter">
+      <span *ngFor="let letter of alphabet">{{ letter }}</span>
+    </div>
+  </div>
+
+  <!-- Divider for Genre -->
+  <div class="genre-divider">
+    <h2>Genre</h2>
+    <ul>
+      @for(genre of this.genres; track $index){
+      <li>
+        {{ genre.name }}
+        <!-- ({{ genre.count }}) -->
+      </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Divider for Season -->
+  <div class="season-divider">
+    <h2>Season</h2>
+    <ul>
+      <li *ngFor="let season of seasons">
+        {{ season }}
+      </li>
+    </ul>
+  </div>
+</div>
