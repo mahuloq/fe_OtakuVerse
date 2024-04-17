@@ -1,20 +1,71 @@
 <div class="search-container">
   <!-- Search bar with alphabet filter -->
   <div class="search-bar">
-    <input type="text" placeholder="Search anime..." />
-    <div class="alphabet-filter">
-      <span *ngFor="let letter of alphabet">{{ letter }}</span>
-    </div>
-  </div>
+    <form [formGroup]="searchForm">
+      <input
+        type="text"
+        placeholder="Search anime..."
+        formControlName="english_title"
+      />
+      @if(searchResults.length > 0){
 
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Anime
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          @for(anime of searchResults; track $index){
+          <button
+            class="dropdown-item"
+            [routerLink]="[
+              '/anime',
+              anime.id,
+              hyphenateUrlParams(anime.english_title)
+            ]"
+          >
+            <h2>{{ anime.english_title }}</h2>
+            <h5>{{ anime.romanji_title }}</h5></button
+          >}
+        </div>
+      </div>
+      }
+    </form>
+    <div class="alphabet-filter">
+      @for(letter of alphabet; track $index){
+      <span
+        [ngClass]="{ selected: selectedLetter === letter }"
+        (click)="selectLetter(letter)"
+      >
+        {{ letter }} </span
+      >}
+    </div>
+    @if(searchType == 'genre'){
+    <div (click)="genreReturn()">
+      <div>Active Genre: {{ selectedGenre.name }}</div>
+      <div>Genre Description: {{ selectedGenre.description }}</div>
+    </div>
+    } @if(searchType == 'season'){
+    <div (click)="seasonReturn()">
+      <div>Active Season: {{ selectedSeason }}</div>
+    </div>
+    }
+  </div>
+  @if(!searchActive){
   <!-- Divider for Genre -->
   <div class="genre-divider">
     <h2>Genre</h2>
     <ul>
       @for(genre of this.genres; track $index){
-      <li>
+      <li (click)="selectGenre(genre)">
         {{ genre.name }}
-        <!-- ({{ genre.count }}) -->
+        ({{ genre.anime_count }})
       </li>
       }
     </ul>
@@ -24,9 +75,29 @@
   <div class="season-divider">
     <h2>Season</h2>
     <ul>
-      <li *ngFor="let season of seasons">
+      @for(season of seasons; track $index){
+      <li (click)="selectSeason(season)">
         {{ season }}
       </li>
+      }
     </ul>
   </div>
+  }
+</div>
+
+<div>
+  @if(searchActive && !animes.length){
+  <div>No Search Results</div>
+  }
+</div>
+
+<div>
+  @for(anime of animes; track $index){
+  <div
+    [routerLink]="['/anime', anime.id, hyphenateUrlParams(anime.english_title)]"
+  >
+    <h2>{{ anime.english_title }}</h2>
+    <h6>{{ anime.romanji_title }}</h6>
+  </div>
+  }
 </div>

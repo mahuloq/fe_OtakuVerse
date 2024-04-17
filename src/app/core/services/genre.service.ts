@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Genre } from '../../shared/models/genre';
 import { Observable, catchError, of } from 'rxjs';
+import { Anime } from '../../shared/models/anime';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,10 @@ export class GenreService {
     return this.http.post(`${environment.apiUrl}/genres`, genre);
   }
 
+  getGenresWithAnimeCount(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(`${environment.apiUrl}/genres/anime_count`);
+  }
+
   searchByName(name: string): Observable<any> {
     if (name.trim() === '') {
       //Return an empty array if name is empty or only whitespace
@@ -38,5 +43,11 @@ export class GenreService {
           })
         );
     }
+  }
+
+  filterGenreByName(id: number) {
+    return this.http.get<Anime[]>(
+      `${environment.apiUrl}/api/searchAnimeByGenreId/${id}`
+    );
   }
 }
