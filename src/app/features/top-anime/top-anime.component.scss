@@ -1,6 +1,7 @@
 img {
   width: 100px;
   height: auto;
+  margin-right: 5px;
 }
 
 .shaded:nth-child(even) {
@@ -20,4 +21,21 @@ ol {
   border-bottom: 1px solid black;
   margin-bottom: 5px;
   text-align: center;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap; /* This will make items wrap to the next row */
+  justify-content: flex-end;
+}
+
+/* Adjust the width of each item to fit two items per row */
+.shaded {
+  width: calc(50% - 20px); /* Subtracting margin width */
+  margin: 10px; /* Margin between items */
+  margin-bottom: 100px;
+  margin-top: 100px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
 }
