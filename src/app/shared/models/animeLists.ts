@@ -19,12 +19,3 @@ export class AnimeLists {
     this.score = animeList.score;
   }
 }
-
-// constructor(profileData: any) {
-//   this.anime_id = profileData.user.anime_lists.anime_id;
-//   this.user_id = profileData.user.anime_lists.user_id;
-//   this.list_type = profileData.user.anime_lists.list_type;
-//   this.start_date = profileData.user.anime_lists.start_date;
-//   this.end_date = profileData.user.anime_lists.end_date;
-//   this.episodes_watched = profileData.user.anime_lists.episodes_watched;
-// }

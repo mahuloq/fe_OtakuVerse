@@ -140,12 +140,12 @@ export class AnimeDetailedComponent implements OnInit {
 
       // Check if form control values exist and add them to the anime list data
       const score = this.animeListForm.get('score')?.value;
-      if (score !== null && score !== undefined) {
+      if (score !== 0) {
         animeListData.score = score;
       }
 
       const episodesWatched = this.animeListForm.get('episodes_watched')?.value;
-      if (episodesWatched !== null && episodesWatched !== undefined) {
+      if (episodesWatched !== 0) {
         animeListData.episodes_watched = episodesWatched;
       }
 
@@ -175,3 +175,41 @@ export class AnimeDetailedComponent implements OnInit {
     } else this.addToMyList();
   }
 }
+
+// addToMyList() {
+
+//   if (!this.isInList) {
+//     const animeListData: any = {
+//       anime_id: this.animeId,
+//     };
+
+//     // Check if form control values exist and add them to the anime list data
+//     const score = this.animeListForm.get('score')?.value;
+//     if (score !== 0) {
+//       animeListData.score = score;
+//     }
+
+//     const episodesWatched = this.animeListForm.get('episodes_watched')?.value;
+//     if (episodesWatched !== 0) {
+//       animeListData.episodes_watched = episodesWatched;
+//     }
+
+//     const listType = this.animeListForm.get('list_type')?.value;
+//     if (listType !== null && listType !== undefined) {
+//       animeListData.list_type = listType;
+//     }
+
+//     // Create anime list with the data collected
+//     this.animeListService.createAnimeList(animeListData).subscribe({
+//       next: (response) => {
+//         console.log('Anime List Created', response);
+//         this.isInList = true;
+//       },
+//       error: (error) => {
+//         console.log('Error creating anime list:', error);
+//       },
+//     });
+//   } else {
+//     console.log('Anime already in list');
+//   }
+// }
