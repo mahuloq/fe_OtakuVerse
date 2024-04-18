@@ -1,6 +1,13 @@
 <form [formGroup]="animeForm" (ngSubmit)="onUpdateAnime()">
-  <div class="anime-cover-photo">
-    <img [src]="anime.cover_photo_url || ''" alt="" />
+  <div class="top-level">
+    <div class="anime-cover-photo">
+      <img [src]="anime.cover_photo_url || ''" alt="" />
+    </div>
+    @if(isAdmin()){
+    <div class="delete-button-holder">
+      <button (click)="deleteAnime()">Delete Anime</button>
+    </div>
+    }
   </div>
   <div>
     <button type="submit">Update Anime</button>

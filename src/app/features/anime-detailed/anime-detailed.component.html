@@ -3,18 +3,67 @@
     <h1>Anime Details</h1>
     <a [routerLink]="['/anime', anime.id, 'edit-anime']">Edit</a>
   </div>
-  <div>
-    <p><strong>English Title:</strong> {{ anime.english_title }}</p>
-    <p><strong>Romanji Title:</strong> {{ anime.romanji_title }}</p>
-    <p><strong>Start Air Date:</strong> {{ anime.start_air_date }}</p>
-    <p><strong>End Air Date:</strong> {{ anime.end_air_date }}</p>
-    <p><strong>Number of Episodes:</strong> {{ anime.number_of_episodes }}</p>
-    <p><strong>Description:</strong> {{ anime.description }}</p>
-    <p><strong>Season:</strong> {{ anime.season }}</p>
-    <p><strong>Studio:</strong> {{ anime.studio }}</p>
-    <p><strong>Source:</strong> {{ anime.source }}</p>
-    <p><strong>Duration:</strong> {{ anime.duration }}</p>
-    <p><strong>Age Rating:</strong> {{ anime.age_rating }}</p>
+  <div class="anime-details">
+    <div class="top">
+      <div class="anime-cover-photo animelist">
+        <img [src]="anime.cover_photo_url || ''" alt="" />
+        <form class="formbox" [formGroup]="animeListForm">
+          @if(!isInList){
+          <button class="animelist-button" (click)="addToMyList()">
+            Add to my list
+          </button>
+          } @if(isInList){
+          <div class="animelist-button">
+            <select formControlName="list_type" name="list_type" id="list_type">
+              <option value="plan_to_watch" selected>Plan to Watch</option>
+              <option value="watching">Watching</option>
+              <option value="completed">Completed</option>
+              <option value="on_hold">On Hold</option>
+              <option value="dropped">Dropped</option>
+            </select>
+          </div>
+          }
+          <select class="animelist-rating" formControlName="score">
+            <option value="" selected disabled hidden>Select &#11088;</option>
+            <option value="1" id="1">(1) Appaling <span>&#11088;</span></option>
+            <option value="2" id="2">(2) Horrible <span>&#11088;</span></option>
+            <option value="3" id="3">(3) Very Bad <span>&#11088;</span></option>
+            <option value="4" id="4">(4) Bad <span>&#11088;</span></option>
+            <option value="5" id="5">(5) Average <span>&#11088;</span></option>
+            <option value="6" id="6">(6) Fine <span>&#11088;</span></option>
+            <option value="7" id="7">(7) Good <span>&#11088;</span></option>
+            <option value="8" id="8">
+              (8) Very Good <span>&#11088;</span>
+            </option>
+            <option value="9" id="9">(9) Great <span>&#11088;</span></option>
+            <option value="10" id="10">
+              (10) Masterpiece <span>&#11088;</span>
+            </option>
+          </select>
+          <input
+            class="animelist-episodes"
+            type="text"
+            placeholder="Episodes"
+            formControlName="episodes_watched"
+          />
+        </form>
+      </div>
+      <div>
+        <p><strong>English Title:</strong> {{ anime.english_title }}</p>
+        <p><strong>Romanji Title:</strong> {{ anime.romanji_title }}</p>
+        <p><strong>Start Air Date:</strong> {{ anime.start_air_date }}</p>
+        <p><strong>End Air Date:</strong> {{ anime.end_air_date }}</p>
+        <p>
+          <strong>Number of Episodes:</strong> {{ anime.number_of_episodes }}
+        </p>
+        <p><strong>Description:</strong> {{ anime.description }}</p>
+        <p><strong>Season:</strong> {{ anime.season }}</p>
+        <p><strong>Studio:</strong> {{ anime.studio }}</p>
+        <p><strong>Source:</strong> {{ anime.source }}</p>
+        <p><strong>Duration:</strong> {{ anime.duration }}</p>
+        <p><strong>Age Rating:</strong> {{ anime.age_rating }}</p>
+      </div>
+    </div>
     <p>
       <strong>Genres:</strong>
       @for(genre of anime.genres; track genre.id){
@@ -66,23 +115,34 @@
         >
       </h6>
     </div>
-    <br />
     <ul>
       @for(review of anime.reviews; track review.id){
-      <li>
-        <p class="username">
-          Username:
-          <a [routerLink]="['/profile', review.user.username]">
-            {{ review.user.username }}
-          </a>
+      <li class="review-container">
+        < class="username"> Username:
+        <a [routerLink]="['/profile', review.user.username]">
+          {{ review.user.username }}
+        </a>
+
+        @if(allowedDelete(review.user.username)){
+        <div class="review-buttons">
+          <button [routerLink]="['/anime', anime.id, 'edit-review', review.id]">
+            Edit Review
+          </button>
+          <button class="delete" (click)="deleteReview(review.id!)">
+            Delete
+          </button>
+        </div>
+        }
+
+        <p class="review-text" [ngClass]="{ expanded: review.expanded }">
+          {{ review.content }}
         </p>
-        <p class="review-text">{{ review.content }}</p>
+        <button class="view-more" (click)="toggleDescription(review)">
+          {{ review.expanded ? "View Less" : "View More" }}
+        </button>
         <br />
       </li>
       }
     </ul>
-    <div class="anime-cover-photo">
-      <img [src]="anime.cover_photo_url || ''" alt="" />
-    </div>
   </div>
 </div>

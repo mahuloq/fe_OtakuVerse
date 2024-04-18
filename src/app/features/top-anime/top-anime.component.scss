@@ -6,3 +6,18 @@ img {
 .shaded:nth-child(even) {
   background-color: black;
 }
+
+.basic-css {
+  margin: 1rem;
+}
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.banner {
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  text-align: center;
+}

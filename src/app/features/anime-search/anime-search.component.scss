@@ -1,11 +1,9 @@
-/* Search container */
 .search-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Search bar */
 .search-bar {
   margin-bottom: 20px;
 }
@@ -18,9 +16,9 @@
   border-radius: 4px;
 }
 
-/* Alphabet filter */
 .alphabet-filter {
   margin-top: 10px;
+  text-align: center;
 }
 
 .alphabet-filter span {
@@ -28,7 +26,6 @@
   cursor: pointer;
 }
 
-/* Divider for Genre */
 .genre-divider {
   margin-bottom: 20px;
 }
@@ -48,7 +45,6 @@
   cursor: pointer;
 }
 
-/* Divider for Season */
 .season-divider h2 {
   font-size: 18px;
   margin-bottom: 10px;
@@ -69,45 +65,40 @@
   font-size: larger;
 }
 
-/* Style for the dropdown container */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Style for the dropdown button */
 .dropdown .dropdown-toggle {
-  background-color: #f8f9fa; /* Background color */
-  color: #000000; /* Text color */
-  border: 1px solid #ced4da; /* Border */
-  padding: 8px 12px; /* Padding */
-  font-size: 16px; /* Font size */
+  background-color: #f8f9fa;
+  color: #000000;
+  border: 1px solid #ced4da;
+  padding: 8px 12px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-/* Style for the dropdown menu */
 .dropdown .dropdown-menu {
   position: absolute;
-  background-color: #ffffff; /* Background color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
-  border: 1px solid #ced4da; /* Border */
-  padding: 8px 0; /* Padding */
-  width: calc(500% + 2px); /* Full width of the search bar */
-  left: -1px; /* Adjust position to align with the search bar */
-  z-index: 1; /* Ensure the dropdown menu is above other elements */
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ced4da;
+  padding: 8px 0;
+  width: calc(500% + 2px);
+  left: -1px;
+  z-index: 1;
 }
 
-/* Style for dropdown menu items */
 .dropdown .dropdown-menu .dropdown-item {
   display: block;
   padding: 8px 12px;
-  color: #343a40; /* Text color */
+  color: #343a40;
   text-decoration: none;
 }
 
-/* Style for hover effect on dropdown menu items */
 .dropdown .dropdown-menu .dropdown-item:hover {
-  background-color: #f8f9fa; /* Background color on hover */
+  background-color: #f8f9fa;
 }
 
 .dropdown-menu {
@@ -116,4 +107,15 @@
 
 .dropdown-item {
   width: 100%;
+}
+
+.search-params {
+  display: flex;
+  justify-content: space-between;
+}
+.genre-details,
+.season-details {
+  margin-top: 5px;
+  text-align: center;
+  border-bottom: solid 1px black;
 }

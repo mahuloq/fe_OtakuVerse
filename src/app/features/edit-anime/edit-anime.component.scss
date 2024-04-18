@@ -73,3 +73,15 @@ button.remove-genre-btn {
   cursor: pointer;
   padding: 8px 12px;
 }
+.top-level {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-button-holder {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+.delete-button-holder button {
+  background-color: red;
+}

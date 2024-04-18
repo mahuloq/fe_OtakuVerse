@@ -95,6 +95,14 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'anime/:id/edit-review/:reviewId',
+    loadComponent: () =>
+      import('./features/edit-review/edit-review.component').then(
+        (m) => m.EditReviewComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'anime/:id/:name',
     loadComponent: () =>
       import('./features/anime-detailed/anime-detailed.component').then(

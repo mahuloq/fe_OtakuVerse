@@ -12,6 +12,7 @@ import {
 import { Genre } from '../../shared/models/genre';
 import { GenreService } from '../../core/services/genre.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { AuthenticationService } from '../auth/services/authentication.service';
 
 @Component({
   selector: 'app-edit-anime',
@@ -69,7 +70,8 @@ export class EditAnimeComponent implements OnInit {
     private route: ActivatedRoute,
     private animeService: AnimeService,
     private genreService: GenreService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -164,5 +166,32 @@ export class EditAnimeComponent implements OnInit {
     const textArea = this.descriptionTextArea.nativeElement;
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
+  }
+
+  deleteAnime() {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this anime?'
+    );
+    if (confirmed) {
+      this.animeService.deleteAnime(this.animeId).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.router.navigate(['']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
+  }
+
+  isAdmin(): boolean {
+    const user = this.authService.getUserFromLocalStorage();
+
+    if (user?.username == 'Admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

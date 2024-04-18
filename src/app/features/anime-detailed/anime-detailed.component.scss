@@ -2,24 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 1rem;
-  margin-left: 0.5rem;
 }
 
 .review-text {
   white-space: pre-wrap;
+  max-height: 250px; /* Set max height to show initially */
+  overflow: hidden; /* Hide overflow content */
+  transition: max-height 0.3s ease; /* Add smooth transition */
 }
-
 .username {
   font-weight: bold;
+  margin-top: 15px;
 }
 
 .cast {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 1rem;
-  margin-left: 0.5rem;
 }
 
 .animeBanner {
@@ -28,4 +27,74 @@
   margin-right: 1rem;
   margin-left: 0.5rem;
   align-items: center;
+}
+
+.review-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-buttons .delete {
+  background-color: red;
+  margin-right: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.expanded {
+  max-height: none; /* Show full description */
+}
+
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.anime-details {
+  margin: 1rem;
+}
+
+.animelist {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.animelist-button {
+  border-radius: 2px;
+  background-color: #4f74c8;
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-right: 3px;
+  margin-left: 5px;
+}
+
+.animelist-button:hover {
+  background-color: #788fc8;
+}
+
+.animelist-rating {
+  width: 135px;
+  margin-right: 5px;
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+}
+
+.animelist-rating option {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.animelist-episodes {
+  width: 125px;
+}
+
+.formbox {
+  background-color: #f8f8f8;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
 }

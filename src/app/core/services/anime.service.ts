@@ -32,6 +32,10 @@ export class AnimeService {
     return this.http.put(`${environment.apiUrl}/animes/${id}`, anime);
   }
 
+  deleteAnime(id: number) {
+    return this.http.delete(`${environment.apiUrl}/animes/${id}`);
+  }
+
   filterAnimeByFirstLetter(letter: string) {
     return this.http.get<Anime[]>(
       `${environment.apiUrl}/api/searchAnimeLetter/${letter}`

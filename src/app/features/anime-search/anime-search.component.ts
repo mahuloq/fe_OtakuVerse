@@ -34,6 +34,7 @@ export class AnimeSearchComponent implements OnInit {
     'A',
     'B',
     'C',
+    'D',
     'E',
     'F',
     'G',
@@ -133,14 +134,16 @@ export class AnimeSearchComponent implements OnInit {
     }
 
     this.selectedLetter = letter;
-    console.log(this.selectedLetter);
+    this.searchType = 'letter';
+    this.selectedGenre = {
+      id: 0,
+      name: '',
+      description: '',
+    };
     this.filterAnimeByLetter(letter);
   }
 
   filterAnimeByLetter(letter: string) {
-    //Implement your logic here to filter anime titles based on the selected letter
-    // You can use this.selectedLetter to filter your anime data
-
     this.animeService.filterAnimeByFirstLetter(letter).subscribe({
       next: (animes: Anime[]) => {
         this.animes = animes;
@@ -167,7 +170,6 @@ export class AnimeSearchComponent implements OnInit {
         console.log(error);
       },
     });
-    // make a request to the backend to get anime, filtered by genre ID that matches.
   }
 
   selectSeason(season: string) {
@@ -184,11 +186,10 @@ export class AnimeSearchComponent implements OnInit {
         console.log(error);
       },
     });
-    // make a request to the backend to display anime based on selected seasons
   }
 
   hyphenateUrlParams(str: string) {
-    return str.replace(/[:']/g, '').replace(/ /g, '-');
+    return str.replace(/[()':]/g, '').replace(/ /g, '-');
   }
 
   genreReturn() {

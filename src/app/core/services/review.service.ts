@@ -13,5 +13,15 @@ export class ReviewService {
     return this.http.post(`${environment.apiUrl}/reviews`, review);
   }
 
-  showReview() {}
+  showReview(id: number) {
+    return this.http.get<Review>(`${environment.apiUrl}/reviews/${id}`);
+  }
+
+  deleteReview(id: number) {
+    return this.http.delete(`${environment.apiUrl}/reviews/${id}`);
+  }
+
+  updateReview(review: Review, id: number) {
+    return this.http.put(`${environment.apiUrl}/reviews/${id}`, review);
+  }
 }

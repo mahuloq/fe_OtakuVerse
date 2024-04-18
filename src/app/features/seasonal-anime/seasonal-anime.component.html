@@ -1,1 +1,69 @@
-<p>seasonal-anime works!</p>
+<div>
+  <h1 class="title">Seasonal Anime</h1>
+  <div class="season-select">
+    <div>Jump to:</div>
+    <select class="season-input" [(ngModel)]="selectedSeason">
+      <option value="" disabled selected hidden>Season</option>
+      <option value="Fall">Fall</option>
+      <option value="Winter">Winter</option>
+      <option value="Spring">Spring</option>
+      <option value="Summer">Summer</option>
+    </select>
+    <input
+      class="year-input"
+      type="number"
+      [(ngModel)]="selectedYear"
+      placeholder="Year"
+    />
+    <button (click)="searchBySeasonAndYear()">Search</button>
+  </div>
+</div>
+<ul class="anime-container">
+  @for(anime of animeList; track anime.id){
+  <div class="anime-item">
+    <div class="shaded">
+      <!-- <li>Rank:</li> -->
+      <li>
+        <img
+          [src]="
+            anime.cover_photo_url ||
+            'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg'
+          "
+          alt=""
+        />
+      </li>
+      <div>
+        <li>
+          <!-- Display information about each anime -->
+          <a
+            [routerLink]="[
+              '/anime',
+              anime.id,
+              hyphenateUrlParams(anime.english_title)
+            ]"
+            routerLinkActive="router-link-active"
+            >{{ anime.english_title }}</a
+          >
+        </li>
+        <li
+          class="description"
+          [ngClass]="{ 'show-description': anime.expanded }"
+        >
+          {{ anime.description }}
+        </li>
+        <button class="view-more" (click)="toggleDescription($index)">
+          {{ anime.expanded ? "View Less" : "View More" }}
+        </button>
+        <li>TV: {{ anime.number_of_episodes }} eps</li>
+        <li>
+          {{ anime.start_air_date }} - @if(anime.end_air_date == null){Still
+          Airing} @if(anime.end_air_date !== null){
+          {{ anime.end_air_date }}
+          }
+        </li>
+      </div>
+    </div>
+  </div>
+  <br />
+  }
+</ul>

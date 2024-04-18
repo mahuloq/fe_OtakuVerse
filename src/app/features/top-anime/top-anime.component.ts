@@ -33,6 +33,7 @@ export class TopAnimeComponent implements OnInit {
   }
 
   hyphenateUrlParams(str: string) {
-    return str.replace(/[:']/g, '').replace(/ /g, '-');
+    // Replace parentheses and other special characters with an empty string
+    return str.replace(/[()':]/g, '').replace(/ /g, '-');
   }
 }

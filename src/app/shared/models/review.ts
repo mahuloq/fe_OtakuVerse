@@ -6,6 +6,7 @@ export class Review {
   user: User;
   id?: number;
   anime_id?: number;
+  expanded?: boolean;
 
   constructor(reviewData: any) {
     this.id = reviewData.id || 0;
@@ -13,5 +14,6 @@ export class Review {
     this.content = reviewData.content || '';
     this.user = new User(reviewData.user || {});
     this.anime_id = reviewData.anime_id;
+    this.expanded = false;
   }
 }

@@ -47,44 +47,45 @@
       >}
     </div>
     @if(searchType == 'genre'){
-    <div (click)="genreReturn()">
+    <div class="genre-details" (click)="genreReturn()">
       <div>Active Genre: {{ selectedGenre.name }}</div>
       <div>Genre Description: {{ selectedGenre.description }}</div>
     </div>
     } @if(searchType == 'season'){
-    <div (click)="seasonReturn()">
+    <div class="season-details" (click)="seasonReturn()">
       <div>Active Season: {{ selectedSeason }}</div>
     </div>
     }
   </div>
-  @if(!searchActive){
-  <!-- Divider for Genre -->
-  <div class="genre-divider">
-    <h2>Genre</h2>
-    <ul>
-      @for(genre of this.genres; track $index){
-      <li (click)="selectGenre(genre)">
-        {{ genre.name }}
-        ({{ genre.anime_count }})
-      </li>
-      }
-    </ul>
-  </div>
+  <div class="search-params">
+    @if(!searchActive){
+    <!-- Divider for Genre -->
+    <div class="genre-divider">
+      <h2>Genre</h2>
+      <ul>
+        @for(genre of this.genres; track $index){
+        <li (click)="selectGenre(genre)">
+          {{ genre.name }}
+          ({{ genre.anime_count }})
+        </li>
+        }
+      </ul>
+    </div>
 
-  <!-- Divider for Season -->
-  <div class="season-divider">
-    <h2>Season</h2>
-    <ul>
-      @for(season of seasons; track $index){
-      <li (click)="selectSeason(season)">
-        {{ season }}
-      </li>
-      }
-    </ul>
+    <!-- Divider for Season -->
+    <div class="season-divider">
+      <h2>Season</h2>
+      <ul>
+        @for(season of seasons; track $index){
+        <li (click)="selectSeason(season)">
+          {{ season }}
+        </li>
+        }
+      </ul>
+    </div>
+    }
   </div>
-  }
 </div>
-
 <div>
   @if(searchActive && !animes.length){
   <div>No Search Results</div>
