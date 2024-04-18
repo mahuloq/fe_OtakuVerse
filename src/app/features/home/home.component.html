@@ -1,1 +1,41 @@
-<p>home works!</p>
+<div class="basic-css">
+  <h1 class="banner">Find your new favorite...</h1>
+  <ul class="flex">
+    @for(anime of randomList; track anime.id){
+    <div class="shaded">
+      <!-- <li>Rank:</li> -->
+      <li>
+        <img
+          [src]="
+            anime.cover_photo_url ||
+            'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-260nw-1037719192.jpg'
+          "
+          alt=""
+        />
+      </li>
+      <div>
+        <li>
+          <!-- Display information about each anime -->
+          <a
+            [routerLink]="[
+              '/anime',
+              anime.id,
+              hyphenateUrlParams(anime.english_title)
+            ]"
+            routerLinkActive="router-link-active"
+            >{{ anime.english_title }}</a
+          >
+        </li>
+        <li>TV: {{ anime.number_of_episodes }} eps</li>
+        <li>
+          {{ anime.start_air_date }} - @if(anime.end_air_date == null){Still
+          Airing} @if(anime.end_air_date !== null){
+          {{ anime.end_air_date }}
+          }
+        </li>
+      </div>
+    </div>
+    <br />
+    }
+  </ul>
+</div>
